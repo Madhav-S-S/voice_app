@@ -84,7 +84,7 @@ class StudentLoginScreen extends StatelessWidget {
                                                               padding:
                                                                   getPadding(
                                                                       left: 77,
-                                                                      top: 91,
+                                                                      top: 50,
                                                                       right: 77,
                                                                       bottom:
                                                                           91),
@@ -143,17 +143,6 @@ class StudentLoginScreen extends StatelessWidget {
                                                     alignment:
                                                         Alignment.topCenter,
                                                     children: [
-                                                      CustomImageView(
-                                                          imagePath: ImageConstant
-                                                              .imgTransparentlogo,
-                                                          height:
-                                                              getVerticalSize(
-                                                                  348),
-                                                          width:
-                                                              getHorizontalSize(
-                                                                  414),
-                                                          alignment: Alignment
-                                                              .topCenter),
                                                       Align(
                                                           alignment: Alignment
                                                               .topCenter,
@@ -199,7 +188,7 @@ class StudentLoginScreen extends StatelessWidget {
                                                                           return CustomTextFormField(
                                                                               focusNode: FocusNode(),
                                                                               controller: passwordboxController,
-                                                                              margin: getMargin(top: 3),
+                                                                              margin: getMargin(top: 40),
                                                                               textInputAction: TextInputAction.done);
                                                                         }),
                                                                     CustomButton(
@@ -208,8 +197,8 @@ class StudentLoginScreen extends StatelessWidget {
                                                                         text: "lbl_login"
                                                                             .tr,
                                                                         margin: getMargin(
-                                                                            top:
-                                                                                40),
+                                                                            top: 60
+                                                                            ),
                                                                         variant:
                                                                             ButtonVariant
                                                                                 .FillLightblue800,
@@ -234,8 +223,7 @@ class StudentLoginScreen extends StatelessWidget {
                                                                             child: Text("msg_forgot_password".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtCenturyGothic15)))
                                                                   ]))),
                                                       Align(
-                                                          alignment: Alignment
-                                                              .centerLeft,
+                                                          alignment: Alignment(-0.999,0.9),
                                                           child: Container(
                                                               padding:
                                                                   getPadding(
@@ -289,8 +277,8 @@ class StudentLoginScreen extends StatelessWidget {
                                                             onTapFaculty(
                                                                 context);
                                                           },
-                                                          alignment: Alignment
-                                                              .centerRight),
+                                                          alignment: Alignment(1,0.9),
+                                                              ),
                                                       Align(
                                                           alignment:
                                                               Alignment.topLeft,
