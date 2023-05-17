@@ -144,8 +144,8 @@ class StudentLoginScreen extends StatelessWidget {
                                                         Alignment.topCenter,
                                                     children: [
                                                       Align(
-                                                          alignment: Alignment
-                                                              .topCenter,
+                                                          alignment: Alignment(1,0.6)
+                                                              ,
                                                           child: Padding(
                                                               padding:
                                                                   getPadding(
@@ -301,11 +301,11 @@ class StudentLoginScreen extends StatelessWidget {
                                                                           .cyanA200))))
                                                     ]))),
                                         Align(
-                                            alignment: Alignment.bottomCenter,
+                                            alignment: Alignment(0,1),
                                             child: Container(
                                                 height: getVerticalSize(54),
                                                 width: getHorizontalSize(282),
-                                                margin: getMargin(bottom: 321),
+                                                margin: getMargin(bottom: 350),
                                                 decoration: BoxDecoration(
                                                     color:
                                                         ColorConstant.gray100,
