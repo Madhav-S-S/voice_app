@@ -57,22 +57,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 reusableTextField("Enter Password", Icons.lock_outlined, true,
                     _passwordTextController),
-                // const SizedBox(
-                //   height: 20,
-                // ),
-                // firebaseUIButton(context, "Sign Up", () {
-                //   FirebaseAuth.instance
-                //       .createUserWithEmailAndPassword(
-                //           email: _emailTextController.text,
-                //           password: _passwordTextController.text)
-                //       .then((value) {
-                //     print("Created New Account");
-                //     Navigator.push(context,
-                //         MaterialPageRoute(builder: (context) => StudentHomePage()));
-                //   }).onError((error, stackTrace) {
-                //     print("Error ${error.toString()}");
-                //   });
-                // })
+                const SizedBox(
+                  height: 20,
+                ),
+                firebaseUIButton(context, "Sign Up", () {
+                  FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                          email: _emailTextController.text,
+                          password: _passwordTextController.text)
+                      .then((value) {
+                    print("Created New Account");
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => StudentHomePage()));
+                  }).onError((error, stackTrace) {
+                    print("Error ${error.toString()}");
+                  });
+                })
               ],
             ),
           ))),
