@@ -1,3 +1,5 @@
+import 'package:voice/presentation/student_home_page/student_home_page.dart';
+import 'package:voice/reusable_widgets/reusable_widget.dart';
 import 'bloc/student_login_bloc.dart';
 import 'models/student_login_model.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +7,11 @@ import 'package:voice/core/app_export.dart';
 import 'package:voice/widgets/custom_button.dart';
 import 'package:voice/presentation/signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class StudentLoginScreen extends StatelessWidget {
+  TextEditingController _passwordTextController = TextEditingController();
+  TextEditingController _emailTextController = TextEditingController();
   static Widget builder(BuildContext context) {
     return BlocProvider<StudentLoginBloc>(
         create: (context) => StudentLoginBloc(
@@ -168,28 +173,18 @@ class StudentLoginScreen extends StatelessWidget {
                                                                     
 
                                                                   
-                                                                    CustomButton(
-                                                                        height: getVerticalSize(
-                                                                            54),
-                                                                        text: "lbl_login"
-                                                                            .tr,
-                                                                        margin: getMargin(
-                                                                            top: 0
-                                                                            ),
-                                                                        variant:
-                                                                            ButtonVariant
-                                                                                .FillLightblue800,
-                                                                        padding:
-                                                                            ButtonPadding
-                                                                                .PaddingAll12,
-                                                                        fontStyle:
-                                                                            ButtonFontStyle
-                                                                                .CenturyGothic24,
-                                                                        onTap:
-                                                                            () {
-                                                                          onTapLogin(
-                                                                              context);
-                                                                        }),
+                                                                     firebaseUIButton(context, "Sign In", () {
+                                                                      FirebaseAuth.instance
+                                                                          .signInWithEmailAndPassword(
+                                                                              email: _emailTextController.text,
+                                                                              password: _passwordTextController.text)
+                                                                          .then((value) {
+                                                                        Navigator.push(context,
+                                                                            MaterialPageRoute(builder: (context) => StudentHomePage()));
+                                                                      }).onError((error, stackTrace) {
+                                                                        print("Error ${error.toString()}");
+                                                                      });
+                                                                    }),
                                                                         CustomButton(
                                                                         height: getVerticalSize(
                                                                             54),
