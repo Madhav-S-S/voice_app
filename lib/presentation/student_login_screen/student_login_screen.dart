@@ -164,21 +164,23 @@ class StudentLoginScreen extends StatelessWidget {
                                                                           .start,
                                                                   children: [
                                                                     SizedBox(
-                                                                              width:275,
-                                                                              child: Align(
-                                                                                  alignment: Alignment(0, 0),
-                                                                                  child: TextField(
-                                                                                    decoration: InputDecoration(
-                                                                                      filled: true,
-                                                                                      fillColor: ColorConstant.gray100,
-                                                                                      hintText: 'PASSWORD',
-                                                                                      border: OutlineInputBorder(
-                                                                                        borderRadius:BorderRadius.circular(15),
-                                                                                      )
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
+                                                                      width: 275,
+                                                                      child: Align(
+                                                                        alignment: Alignment(0, 0),
+                                                                        child: TextField(
+                                                                          obscureText: true,
+                                                                          decoration: InputDecoration(
+                                                                            filled: true,
+                                                                            fillColor: ColorConstant.gray100,
+                                                                            hintText: 'PASSWORD',
+                                                                            border: OutlineInputBorder(
+                                                                              borderRadius: BorderRadius.circular(15),
                                                                             ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+
                                                                   
                                                                     CustomButton(
                                                                         height: getVerticalSize(
