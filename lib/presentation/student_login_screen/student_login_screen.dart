@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:voice/core/app_export.dart';
 import 'package:voice/widgets/custom_button.dart';
 import 'package:voice/presentation/signup_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class StudentLoginScreen extends StatelessWidget {
   static Widget builder(BuildContext context) {
@@ -164,23 +165,7 @@ class StudentLoginScreen extends StatelessWidget {
                                                                       MainAxisAlignment
                                                                           .start,
                                                                   children: [
-                                                                    SizedBox(
-                                                                      width: 275,
-                                                                      child: Align(
-                                                                        alignment: Alignment(0, 0),
-                                                                        child: TextField(
-                                                                          obscureText: true,
-                                                                          decoration: InputDecoration(
-                                                                            filled: true,
-                                                                            fillColor: ColorConstant.gray100,
-                                                                            hintText: 'PASSWORD',
-                                                                            border: OutlineInputBorder(
-                                                                              borderRadius: BorderRadius.circular(15),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
+                                                                    
 
                                                                   
                                                                     CustomButton(
@@ -189,7 +174,7 @@ class StudentLoginScreen extends StatelessWidget {
                                                                         text: "lbl_login"
                                                                             .tr,
                                                                         margin: getMargin(
-                                                                            top: 20
+                                                                            top: 0
                                                                             ),
                                                                         variant:
                                                                             ButtonVariant
@@ -302,6 +287,23 @@ class StudentLoginScreen extends StatelessWidget {
                                               ),
                                             ),
                                         ),
+                                        SizedBox(
+                                                                      width: 275,
+                                                                      child: Align(
+                                                                        alignment: Alignment(0, 0.2),
+                                                                        child: TextField(
+                                                                          obscureText: true,
+                                                                          decoration: InputDecoration(
+                                                                            filled: true,
+                                                                            fillColor: ColorConstant.gray100,
+                                                                            hintText: 'PASSWORD',
+                                                                            border: OutlineInputBorder(
+                                                                              borderRadius: BorderRadius.circular(15),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
 
 
 

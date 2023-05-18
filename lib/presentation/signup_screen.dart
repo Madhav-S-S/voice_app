@@ -3,6 +3,7 @@ import 'package:voice/reusable_widgets/reusable_widget.dart';
 import 'package:voice/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/presentation/student_home_page/student_home_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 
 class SignUpScreen extends StatefulWidget {
