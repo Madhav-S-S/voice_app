@@ -136,7 +136,7 @@ class StudentLoginScreen extends StatelessWidget {
                                         Align(
                                             alignment: Alignment.bottomCenter,
                                             child: Container(
-                                                height: getVerticalSize(628),
+                                                height: getVerticalSize(1200),
                                                 width: double.maxFinite,
                                                 child: Stack(
                                                     alignment:
@@ -226,14 +226,7 @@ class StudentLoginScreen extends StatelessWidget {
                                                                           onTapLogin(
                                                                               context);
                                                                         }),
-                                                                    Align(
-                                                                        alignment:
-                                                                            Alignment
-                                                                                .center,
-                                                                        child: Padding(
-                                                                            padding:
-                                                                                getPadding(top: 27),
-                                                                            child: Text("msg_forgot_password".tr, overflow: TextOverflow.ellipsis, textAlign: TextAlign.left, style: AppStyle.txtCenturyGothic15)))
+                                                                    
                                                                   ]))),
                                                       Align(
                                                           alignment: Alignment(-0.999,0.9),
