@@ -188,7 +188,7 @@ class StudentLoginScreen extends StatelessWidget {
                                                                         text: "lbl_login"
                                                                             .tr,
                                                                         margin: getMargin(
-                                                                            top: 60
+                                                                            top: 20
                                                                             ),
                                                                         variant:
                                                                             ButtonVariant
@@ -210,7 +210,7 @@ class StudentLoginScreen extends StatelessWidget {
                                                                         text: "SIGN UP"
                                                                             .tr,
                                                                         margin: getMargin(
-                                                                            top: 60
+                                                                            top: 20
                                                                             ),
                                                                         variant:
                                                                             ButtonVariant
