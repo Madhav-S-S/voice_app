@@ -3,6 +3,7 @@ import 'models/student_login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/core/app_export.dart';
 import 'package:voice/widgets/custom_button.dart';
+import 'package:voice/presentation/signup_screen.dart';
 
 class StudentLoginScreen extends StatelessWidget {
   static Widget builder(BuildContext context) {
@@ -221,10 +222,9 @@ class StudentLoginScreen extends StatelessWidget {
                                                                         fontStyle:
                                                                             ButtonFontStyle
                                                                                 .CenturyGothic24,
-                                                                        onTap:
-                                                                            () {
-                                                                          onTapLogin(
-                                                                              context);
+                                                                        onTap:() {
+                                                                          Navigator.push(context,
+                                                                            MaterialPageRoute(builder:(context)=>SignUpScreen()));
                                                                         }),
                                                                     
                                                                   ]))),

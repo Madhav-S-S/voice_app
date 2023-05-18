@@ -33,9 +33,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-            hexStringToColor("CB2B93"),
-            hexStringToColor("9546C4"),
-            hexStringToColor("5E61F4")
+            hexStringToColor("00308F"),
+            hexStringToColor("007FFF"),
+            hexStringToColor("318CE7")
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: SingleChildScrollView(
               child: Padding(
@@ -57,22 +57,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 reusableTextField("Enter Password", Icons.lock_outlined, true,
                     _passwordTextController),
-                const SizedBox(
-                  height: 20,
-                ),
-                firebaseUIButton(context, "Sign Up", () {
-                  FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
-                    print("Created New Account");
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => StudentHomePage()));
-                  }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
-                  });
-                })
+                // const SizedBox(
+                //   height: 20,
+                // ),
+                // firebaseUIButton(context, "Sign Up", () {
+                //   FirebaseAuth.instance
+                //       .createUserWithEmailAndPassword(
+                //           email: _emailTextController.text,
+                //           password: _passwordTextController.text)
+                //       .then((value) {
+                //     print("Created New Account");
+                //     Navigator.push(context,
+                //         MaterialPageRoute(builder: (context) => StudentHomePage()));
+                //   }).onError((error, stackTrace) {
+                //     print("Error ${error.toString()}");
+                //   });
+                // })
               ],
             ),
           ))),
