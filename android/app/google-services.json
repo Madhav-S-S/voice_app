@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "398674673846",
+    "project_id": "voice-f79e4",
+    "storage_bucket": "voice-f79e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398674673846:android:14cc95eadfb5e6e78a6617",
+        "android_client_info": {
+          "package_name": "com.voice.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398674673846-mvprd7gg60dgschmsf2i1cbusj5bvjno.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdqOjqguQiqvEs8G8HQFL_2qKfMyV3UTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398674673846-mvprd7gg60dgschmsf2i1cbusj5bvjno.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

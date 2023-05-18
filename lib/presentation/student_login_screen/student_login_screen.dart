@@ -3,7 +3,6 @@ import 'models/student_login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/core/app_export.dart';
 import 'package:voice/widgets/custom_button.dart';
-import 'package:voice/widgets/custom_text_form_field.dart';
 
 class StudentLoginScreen extends StatelessWidget {
   static Widget builder(BuildContext context) {
@@ -164,33 +163,23 @@ class StudentLoginScreen extends StatelessWidget {
                                                                       MainAxisAlignment
                                                                           .start,
                                                                   children: [
-                                                                    Padding(
-                                                                        padding: getPadding(
-                                                                            left:
-                                                                                7),
-                                                                        child: Text(
-                                                                            "lbl_password"
-                                                                                .tr,
-                                                                            overflow:
-                                                                                TextOverflow.ellipsis,
-                                                                            textAlign: TextAlign.left,
-                                                                            style: AppStyle.txtCandara15)),
-                                                                    BlocSelector<
-                                                                            StudentLoginBloc,
-                                                                            StudentLoginState,
-                                                                            TextEditingController?>(
-                                                                        selector: (state) =>
-                                                                            state
-                                                                                .passwordboxController,
-                                                                        builder:
-                                                                            (context,
-                                                                                passwordboxController) {
-                                                                          return CustomTextFormField(
-                                                                              focusNode: FocusNode(),
-                                                                              controller: passwordboxController,
-                                                                              margin: getMargin(top: 40),
-                                                                              textInputAction: TextInputAction.done);
-                                                                        }),
+                                                                    SizedBox(
+                                                                              width:275,
+                                                                              child: Align(
+                                                                                  alignment: Alignment(0, 0),
+                                                                                  child: TextField(
+                                                                                    decoration: InputDecoration(
+                                                                                      filled: true,
+                                                                                      fillColor: ColorConstant.gray100,
+                                                                                      hintText: 'PASSWORD',
+                                                                                      border: OutlineInputBorder(
+                                                                                        borderRadius:BorderRadius.circular(15),
+                                                                                      )
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                            ),
+                                                                  
                                                                     CustomButton(
                                                                         height: getVerticalSize(
                                                                             54),
@@ -279,40 +268,23 @@ class StudentLoginScreen extends StatelessWidget {
                                                           },
                                                           alignment: Alignment(1,0.9),
                                                               ),
-                                                      Align(
-                                                          alignment:
-                                                              Alignment.topLeft,
-                                                          child: Padding(
-                                                              padding:
-                                                                  getPadding(
-                                                                      top: 292),
-                                                              child: SizedBox(
-                                                                  width:
-                                                                      getHorizontalSize(
-                                                                          207),
-                                                                  child: Divider(
-                                                                      height:
-                                                                          getVerticalSize(
-                                                                              4),
-                                                                      thickness:
-                                                                          getVerticalSize(
-                                                                              4),
-                                                                      color: ColorConstant
-                                                                          .cyanA200))))
                                                     ]))),
-                                        Align(
-  alignment: Alignment(0, 0),
-  child: TextField(
-    decoration: InputDecoration(
-      filled: true,
-      fillColor: ColorConstant.gray100,
-      hintText: 'COLLEGE ID',
-      border: OutlineInputBorder(
-        borderRadius:BorderRadius.circular(15),
-      )
-    ),
-  ),
-),
+                                        SizedBox(
+                                          width:275,
+                                          child: Align(
+                                              alignment: Alignment(0, 0),
+                                              child: TextField(
+                                                decoration: InputDecoration(
+                                                  filled: true,
+                                                  fillColor: ColorConstant.gray100,
+                                                  hintText: 'COLLEGE ID',
+                                                  border: OutlineInputBorder(
+                                                    borderRadius:BorderRadius.circular(15),
+                                                  )
+                                                ),
+                                              ),
+                                            ),
+                                        ),
 
 
 
