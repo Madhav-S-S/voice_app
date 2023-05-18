@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:voice/core/app_export.dart';
 
 // ignore: must_be_immutable
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomAppBar(
       {required this.height,
       this.styleType,
@@ -85,6 +85,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
     }
   }
 }
+
 
 enum Style {
   bgFillGray90003,

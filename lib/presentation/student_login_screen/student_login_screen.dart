@@ -301,30 +301,21 @@ class StudentLoginScreen extends StatelessWidget {
                                                                           .cyanA200))))
                                                     ]))),
                                         Align(
-                                            alignment: Alignment(0,1),
-                                            child: Container(
-                                                height: getVerticalSize(54),
-                                                width: getHorizontalSize(282),
-                                                margin: getMargin(bottom: 350),
-                                                decoration: BoxDecoration(
-                                                    color:
-                                                        ColorConstant.gray100,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            getHorizontalSize(
-                                                                15)),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                          color: ColorConstant
-                                                              .black9003f,
-                                                          spreadRadius:
-                                                              getHorizontalSize(
-                                                                  2),
-                                                          blurRadius:
-                                                              getHorizontalSize(
-                                                                  2),
-                                                          offset: Offset(0, 4))
-                                                    ])))
+  alignment: Alignment(0, 0),
+  child: TextField(
+    decoration: InputDecoration(
+      filled: true,
+      fillColor: ColorConstant.gray100,
+      hintText: 'COLLEGE ID',
+      border: OutlineInputBorder(
+        borderRadius:BorderRadius.circular(15),
+      )
+    ),
+  ),
+),
+
+
+
                                       ]))))
                     ]))));
   }
