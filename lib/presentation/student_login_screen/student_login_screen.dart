@@ -204,6 +204,28 @@ class StudentLoginScreen extends StatelessWidget {
                                                                           onTapLogin(
                                                                               context);
                                                                         }),
+                                                                        CustomButton(
+                                                                        height: getVerticalSize(
+                                                                            54),
+                                                                        text: "SIGN UP"
+                                                                            .tr,
+                                                                        margin: getMargin(
+                                                                            top: 60
+                                                                            ),
+                                                                        variant:
+                                                                            ButtonVariant
+                                                                                .FillLightblue800,
+                                                                        padding:
+                                                                            ButtonPadding
+                                                                                .PaddingAll12,
+                                                                        fontStyle:
+                                                                            ButtonFontStyle
+                                                                                .CenturyGothic24,
+                                                                        onTap:
+                                                                            () {
+                                                                          onTapLogin(
+                                                                              context);
+                                                                        }),
                                                                     Align(
                                                                         alignment:
                                                                             Alignment
