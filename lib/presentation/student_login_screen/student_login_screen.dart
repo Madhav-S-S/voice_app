@@ -271,6 +271,7 @@ class StudentLoginScreen extends StatelessWidget {
                                           child: Align(
                                               alignment: Alignment(0, 0),
                                               child: TextField(
+                                                controller: _emailTextController,
                                                 decoration: InputDecoration(
                                                   filled: true,
                                                   fillColor: ColorConstant.gray100,
@@ -287,6 +288,7 @@ class StudentLoginScreen extends StatelessWidget {
                                                                       child: Align(
                                                                         alignment: Alignment(0, 0.2),
                                                                         child: TextField(
+                                                                          controller: _passwordTextController,
                                                                           obscureText: true,
                                                                           decoration: InputDecoration(
                                                                             filled: true,
