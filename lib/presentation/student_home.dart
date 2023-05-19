@@ -16,10 +16,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+      backgroundColor: Color.fromRGBO(0, 28, 46, 1),
+
+
         centerTitle: true,
         title: const Text(
           "HOME",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal,fontFamily: "Poppins"),
         ),
       ),
       body:Container(
@@ -42,12 +45,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height:20),
                 Container(height:150,width:1000,
+                    child: Text("GENERAL",
+                      textAlign: TextAlign.center,
+                  ),
                  decoration: BoxDecoration(
               color: Colors.blue,
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.purple,
+                  color: Colors.grey,
                   spreadRadius: 1,
                   blurRadius: 8,
                   offset: Offset(4, 4),
@@ -62,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.purple,
+                  color: Colors.grey,
                   spreadRadius: 1,
                   blurRadius: 8,
                   offset: Offset(4, 4),
@@ -77,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.purple,
+                  color: Colors.grey,
                   spreadRadius: 1,
                   blurRadius: 8,
                   offset: Offset(4, 4),
