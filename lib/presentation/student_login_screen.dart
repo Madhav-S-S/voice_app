@@ -26,7 +26,7 @@ class _SignInScreenState extends State<SignInScreen> {
             gradient: LinearGradient(colors: [
           hexStringToColor("00308F"),
           hexStringToColor("9546C4"),
-          hexStringToColor("5E61F4")
+          hexStringToColor("001C2E")
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: SingleChildScrollView(
           child: Padding(
