@@ -1,5 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:voice/presentation/student_login_screen.dart';
+import 'package:voice/presentation/student/student_login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() async {

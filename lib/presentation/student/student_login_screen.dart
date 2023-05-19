@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:voice/reusable_widgets/reusable_widget.dart';
-import 'package:voice/presentation/student_home.dart';
-import 'package:voice/presentation/signup_screen.dart';
+import 'package:voice/presentation/student/student_home.dart';
+import 'package:voice/presentation/student/signup_screen.dart';
 import 'package:voice/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/core/utils/image_constant.dart';
@@ -55,16 +55,31 @@ class _SignInScreenState extends State<SignInScreen> {
                           password: _passwordTextController.text)
                       .then((value) {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                        MaterialPageRoute(builder: (context) => studentHomeScreen()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });
                 }),
-                signUpOption()
+                signUpOption(),
               ],
             ),
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 10,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+              label: "STUDENT",
+              backgroundColor: Color(0xff001C2E),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outlined),
+              label: "FACULTY",
+              backgroundColor: Color(0xff6263B6),
+          ),
+        ],
       ),
     );
   }

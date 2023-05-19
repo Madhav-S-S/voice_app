@@ -1,18 +1,18 @@
-import 'package:voice/presentation/student_login_screen.dart';
+import 'package:voice/presentation/student/student_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:voice/utils/color_utils.dart';
 import 'package:voice/core/utils/image_constant.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class studentHomeScreen extends StatefulWidget {
+  const studentHomeScreen({Key? key}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<studentHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,25 +45,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400,fontFamily: "Poppins")
                 ),
                 SizedBox(height:20),
-                Container(height:150,width:1000,
-                    child: Center(
-                      child: Text("GENERAL",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize:30,fontFamily: "Poppins",color: Colors.white),
+                GestureDetector(
+                  onTap: (){
+                    print("clicked");
+                  },
+                  child: Container(height:150,width:1000,
+                      child: Center(
+                        child: Text("GENERAL",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize:30,fontFamily: "Poppins",color: Colors.white),
+                        ),
                       ),
-                    ),
-                 decoration: BoxDecoration(
-              color: Color.fromRGBO(0, 114, 182,1),
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  spreadRadius: 1,
-                  blurRadius: 8,
-                  offset: Offset(4, 4),
-                    )
-                  ]
-                )
+                   decoration: BoxDecoration(
+                              color: Color.fromRGBO(0, 114, 182,1),
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    spreadRadius: 1,
+                    blurRadius: 8,
+                    offset: Offset(4, 4),
+                      )
+                    ]
+                  )
+                  ),
                 ),
                 SizedBox(height: 30,),
                 Container(height:150,width:1000,

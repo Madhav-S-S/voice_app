@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:voice/presentation/student_home.dart';
+import 'package:voice/presentation/student/student_home.dart';
 import 'package:voice/reusable_widgets/reusable_widget.dart';
 import 'package:voice/utils/color_utils.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       .then((value) {
                     print("Created New Account");
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                        MaterialPageRoute(builder: (context) => studentHomeScreen()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });
