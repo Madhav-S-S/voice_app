@@ -82,11 +82,10 @@ class _SignUpState extends State<SignUpScreen> {
                           controller: emailController,
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: Color(0x77ffffff),
                             hintText: 'SAINTGITS MAIL ID',
                             enabled: true,
-                            contentPadding: const EdgeInsets.only(
-                                left: 14.0, bottom: 8.0, top: 8.0),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                             focusedBorder: OutlineInputBorder(
                               borderSide: new BorderSide(color: Colors.white),
                               borderRadius: new BorderRadius.circular(20),
@@ -128,11 +127,10 @@ class _SignUpState extends State<SignUpScreen> {
                                   });
                                 }),
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: Color(0x77ffffff),
                             hintText: 'PASSWORD',
                             enabled: true,
-                            contentPadding: const EdgeInsets.only(
-                                left: 14.0, bottom: 8.0, top: 15.0),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                             focusedBorder: OutlineInputBorder(
                               borderSide: new BorderSide(color: Colors.white),
                               borderRadius: new BorderRadius.circular(20),
@@ -172,11 +170,10 @@ class _SignUpState extends State<SignUpScreen> {
                                   });
                                 }),
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor:Color(0x77ffffff),
                             hintText: 'CONFIRM PASSWORD',
                             enabled: true,
-                            contentPadding: const EdgeInsets.only(
-                                left: 14.0, bottom: 8.0, top: 15.0),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                             focusedBorder: OutlineInputBorder(
                               borderSide: new BorderSide(color: Colors.white),
                               borderRadius: new BorderRadius.circular(20),
@@ -242,56 +239,48 @@ class _SignUpState extends State<SignUpScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            MaterialButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0))),
-                              elevation: 5.0,
-                              height: 40,
-                              onPressed: () {
-                                CircularProgressIndicator();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginPage(),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
-                              color: Colors.white,
+                        MaterialButton(
+                          minWidth: MediaQuery.of(context).size.width-100,
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0))),
+                          elevation: 5.0,
+                          height: 50,
+                          onPressed: () {
+                            setState(() {
+                              showProgress = true;
+                            });
+                            signUp(emailController.text,
+                                passwordController.text, role);
+                          },
+                          child: Text(
+                            "Register",
+                            style: TextStyle(
+                              fontSize: 20,
                             ),
-                            MaterialButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0))),
-                              elevation: 5.0,
-                              height: 40,
-                              onPressed: () {
-                                setState(() {
-                                  showProgress = true;
-                                });
-                                signUp(emailController.text,
-                                    passwordController.text, role);
-                              },
-                              child: Text(
-                                "Register",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
-                              color: Colors.white,
-                            ),
-                          ],
+                          ),
+                          color: Colors.white,
                         ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("Already have an account?",
+                              style: TextStyle(color: Colors.white70,fontSize: 15)),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => LoginPage()));
+                            },
+                            child: const Text(
+                              " Login",
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            ),
+                          )
+                        ],
+                      ),
                         SizedBox(
                           height: 20,
                         ),

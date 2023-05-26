@@ -61,16 +61,16 @@ class _LoginPageState extends State<LoginPage> {
                       controller: emailController,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Color(0x99ffffff),
+                        fillColor: Color(0x77ffffff),
                         hintText: 'SAINTGITS MAIL ID',
                         enabled: true,
                         contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         focusedBorder: OutlineInputBorder(
                           borderSide: new BorderSide(color: Colors.white),
-                          borderRadius: new BorderRadius.circular(10),
+                          borderRadius: new BorderRadius.circular(20),
                         ),
                         enabledBorder: UnderlineInputBorder(
-                          borderRadius: new BorderRadius.circular(50),
+                          borderRadius: new BorderRadius.circular(25),
                         ),
                       ),
                       validator: (value) {
@@ -107,13 +107,13 @@ class _LoginPageState extends State<LoginPage> {
                               });
                             }),
                         filled: true,
-                        fillColor: Color(0x99ffffff),
+                        fillColor: Color(0x77ffffff),
                         hintText: 'PASSWORD',
                         enabled: true,
                         contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         focusedBorder: OutlineInputBorder(
                           borderSide: new BorderSide(color: Colors.white),
-                          borderRadius: new BorderRadius.circular(10),
+                          borderRadius: new BorderRadius.circular(20),
                         ),
                         enabledBorder: UnderlineInputBorder(
                           borderRadius: new BorderRadius.circular(25),
