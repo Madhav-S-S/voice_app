@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:voice/presentation/student/student_login_screen.dart';
+import 'package:voice/student/student_login_screen.dart';
 import 'package:voice/utils/color_utils.dart';
 //import 'login.dart';
 // import 'model.dart';

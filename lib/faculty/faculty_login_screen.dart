@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:voice/reusable_widgets/reusable_widget.dart';
-import 'package:voice/presentation/student/student_home.dart';
-import 'package:voice/presentation/student/signup_screen.dart';
+import 'package:voice/student/student_home.dart';
+import 'package:voice/student/signup_screen.dart';
 import 'package:voice/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/core/utils/image_constant.dart';
