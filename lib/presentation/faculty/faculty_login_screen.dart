@@ -5,16 +5,15 @@ import 'package:voice/presentation/student/signup_screen.dart';
 import 'package:voice/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/core/utils/image_constant.dart';
-import 'package:voice/presentation/faculty/faculty_login_screen.dart';
 
-class StudentSignInScreen extends StatefulWidget {
-  const StudentSignInScreen({Key? key}) : super(key: key);
+class FacultySignInScreen extends StatefulWidget {
+  const FacultySignInScreen({Key? key}) : super(key: key);
 
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends State<StudentSignInScreen> {
+class _SignInScreenState extends State<FacultySignInScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   @override
@@ -25,9 +24,9 @@ class _SignInScreenState extends State<StudentSignInScreen> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
+          hexStringToColor("001C2E"),
           hexStringToColor("00308F"),
-          hexStringToColor("9546C4"),
-          hexStringToColor("001C2E")
+          hexStringToColor("9546C4")
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: SingleChildScrollView(
           child: Padding(
@@ -78,13 +77,6 @@ class _SignInScreenState extends State<StudentSignInScreen> {
         backgroundColor: Color(0xff001C2E),
         unselectedItemColor: Colors.white,
         selectedItemColor: Colors.white,
-        //create an onTap function to navigate to faculty_login_screen.dart
-        onTap: (index) {
-          if (index == 1) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => StudentSignInScreen()));
-          }
-        },
         elevation: 10,
         items: [
           BottomNavigationBarItem(
