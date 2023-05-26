@@ -45,7 +45,7 @@ class _SignInScreenState extends State<SignInScreen> {
                          const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("COLLEGE ID", Icons.person_outline, false,
+                reusableTextField("SAINTGITS MAIL ID", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
@@ -93,7 +93,6 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
-
   Row signUpOption() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
