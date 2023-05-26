@@ -15,6 +15,7 @@ class StudentSignInScreen extends StatefulWidget {
 }
 
 class _StudentSignInScreenState extends State<StudentSignInScreen> {
+  int _currentIndex = 0;
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   @override
@@ -75,25 +76,28 @@ class _StudentSignInScreenState extends State<StudentSignInScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _currentIndex,
         backgroundColor: Color(0xff001C2E),
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.blueGrey,
+        selectedItemColor: Colors.purple[300],
         //create an onTap function to navigate to faculty_login_screen.dart
         onTap: (index) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => StudentSignInScreen()));
+            setState(() {
+              _currentIndex = index;
+            });
         },
         elevation: 10,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person,size: 40,),
               label: "STUDENT",
               backgroundColor: Color(0xff001C2E),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outlined),
+            icon: Icon(Icons.person_outlined,size:40),
               label: "FACULTY",
-              backgroundColor: Color(0xff6263B6),
+              backgroundColor: Color(0xff23132E),
           ),
         ],
       ),
