@@ -31,11 +31,18 @@ class _SignInScreenState extends State<SignInScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+                20,100, 20, 0),
             child: Column(
               children: <Widget>[
                 logoWidget(ImageConstant.imgVoiceicon),
-                const SizedBox(
+               
+                Text("VOICE",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 60,
+                        fontFamily: "Poppins",
+                        )),
+                         const SizedBox(
                   height: 30,
                 ),
                 reusableTextField("COLLEGE ID", Icons.person_outline, false,
