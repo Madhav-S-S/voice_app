@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:voice/presentation/faculty/faculty_home.dart';
 import 'package:voice/reusable_widgets/reusable_widget.dart';
 import 'package:voice/presentation/student/student_home.dart';
 import 'package:voice/presentation/student/signup_screen.dart';
@@ -7,119 +9,248 @@ import 'package:flutter/material.dart';
 import 'package:voice/core/utils/image_constant.dart';
 import 'package:voice/presentation/faculty/faculty_login_screen.dart';
 
-class StudentSignInScreen extends StatefulWidget {
-  const StudentSignInScreen({Key? key}) : super(key: key);
-
+class LoginPage extends StatefulWidget {
   @override
-  _StudentSignInScreenState createState() => _StudentSignInScreenState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _StudentSignInScreenState extends State<StudentSignInScreen> {
-  int _currentIndex = 0;
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
+class _LoginPageState extends State<LoginPage> {
+  bool _isObscure3 = true;
+  bool visible = false;
+  final _formkey = GlobalKey<FormState>();
+  final TextEditingController emailController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-          hexStringToColor("00308F"),
-          hexStringToColor("9546C4"),
-          hexStringToColor("001C2E")
-        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(
-                20,100, 20, 0),
-            child: Column(
-              children: <Widget>[
-                logoWidget(ImageConstant.imgVoiceicon),
-               
-                Text("VOICE",
-                    style: TextStyle(
+        child: Column(
+          children: <Widget>[
+            Container(
+                      decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                    hexStringToColor("00308F"),
+                    hexStringToColor("9546C4"),
+                    hexStringToColor("001C2E")
+                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Center(
+                child: Form(
+                  key: _formkey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                       logoWidget(ImageConstant.imgVoiceicon),
+                      Text(
+                        "VOICE",
+                        style: TextStyle(
+                          fontFamily: "Poppins",
+                          color: Colors.white,
+                          fontSize: 60,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        controller: emailController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0x99ffffff),
+                          hintText: 'Email',
+                          enabled: true,
+                          contentPadding: const EdgeInsets.only(
+                              left: 14.0, bottom: 8.0, top: 8.0),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: new BorderSide(color: Colors.white),
+                            borderRadius: new BorderRadius.circular(10),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: new BorderSide(color: Colors.white),
+                            borderRadius: new BorderRadius.circular(10),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value!.length == 0) {
+                            return "Email cannot be empty";
+                          }
+                          if (!RegExp(
+                                  "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              .hasMatch(value)) {
+                            return ("Please enter a valid email");
+                          } else {
+                            return null;
+                          }
+                        },
+                        onSaved: (value) {
+                          emailController.text = value!;
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        controller: passwordController,
+                        obscureText: _isObscure3,
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                              icon: Icon(_isObscure3
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure3 = !_isObscure3;
+                                });
+                              }),
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'Password',
+                          enabled: true,
+                          contentPadding: const EdgeInsets.only(
+                              left: 14.0, bottom: 8.0, top: 15.0),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: new BorderSide(color: Colors.white),
+                            borderRadius: new BorderRadius.circular(10),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: new BorderSide(color: Colors.white),
+                            borderRadius: new BorderRadius.circular(10),
+                          ),
+                        ),
+                        validator: (value) {
+                          RegExp regex = new RegExp(r'^.{6,}$');
+                          if (value!.isEmpty) {
+                            return "Password cannot be empty";
+                          }
+                          if (!regex.hasMatch(value)) {
+                            return ("please enter valid password min. 6 character");
+                          } else {
+                            return null;
+                          }
+                        },
+                        onSaved: (value) {
+                          passwordController.text = value!;
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                     
+                      SizedBox(
+                        height: 20,
+                      ),
+                      MaterialButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+                        elevation: 5.0,
+                        height: 40,
+                        onPressed: () {
+                          setState(() {
+                            visible = true;
+                          });
+                          signIn(
+                              emailController.text, passwordController.text);
+                        },
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
                         color: Colors.white,
-                        fontSize: 60,
-                        fontFamily: "Poppins",
-                        )),
-                         const SizedBox(
-                  height: 30,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      MaterialButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(20.0),
+                      ),
+                    ),
+                    elevation: 5.0,
+                    height: 40,
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpScreen(),
+                        ),
+                      );
+                    },
+                    color: Colors.blue[900],
+                    child: Text(
+                      "Register Now",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                    ],
+                  ),
                 ),
-                reusableTextField("SAINTGITS MAIL ID", Icons.person_outline, false,
-                    _emailTextController),
-                const SizedBox(
-                  height: 20,
-                ),
-                reusableTextField("PASSWORD", Icons.lock_outline, true,
-                    _passwordTextController),
-                const SizedBox(
-                  height: 5,
-                ),
-                firebaseUIButton(context, "Sign In", () {
-                  FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => FacultySignInScreen()));
-                  }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
-                  });
-                }),
-                signUpOption(),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
-        backgroundColor: Color(0xff001C2E),
-        unselectedItemColor: Colors.blueGrey,
-        selectedItemColor: Colors.purple[300],
-        //create an onTap function to navigate to faculty_login_screen.dart
-        onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-        },
-        elevation: 10,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person,size: 40,),
-              label: "STUDENT",
-              backgroundColor: Color(0xff001C2E),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outlined,size:40),
-              label: "FACULTY",
-              backgroundColor: Color(0xff23132E),
-          ),
-        ],
-      ),
     );
   }
-  Row signUpOption() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text("Don't have account?",
-            style: TextStyle(color: Colors.white70)),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SignUpScreen()));
-          },
-          child: const Text(
-            " Sign Up",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+
+  void route() {
+    User? user = FirebaseAuth.instance.currentUser;
+    var kk = FirebaseFirestore.instance
+            .collection('users')
+            .doc(user!.uid)
+            .get()
+            .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        if (documentSnapshot.get('role') == "Teacher") {
+           Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>  facultyHomeScreen(),
           ),
-        )
-      ],
-    );
+        );
+        }else{
+          Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>  studentHomeScreen(),
+          ),
+        );
+        }
+      } else {
+        print('Document does not exist on the database');
+      }
+    });
+  }
+
+  void signIn(String email, String password) async {
+    if (_formkey.currentState!.validate()) {
+      try {
+        UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        route();
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          print('No user found for that email.');
+        } else if (e.code == 'wrong-password') {
+          print('Wrong password provided for that user.');
+        }
+      }
+    }
   }
 }
+
+
+
+

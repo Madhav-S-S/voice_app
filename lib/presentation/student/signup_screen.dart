@@ -257,7 +257,7 @@ class _SignUpState extends State<SignUpScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => StudentSignInScreen(),
+                                    builder: (context) => LoginPage(),
                                   ),
                                 );
                               },
@@ -323,6 +323,6 @@ class _SignUpState extends State<SignUpScreen> {
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
     ref.doc(user!.uid).set({'email': emailController.text, 'role': role});
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => StudentSignInScreen()));
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 }

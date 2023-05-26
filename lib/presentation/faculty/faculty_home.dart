@@ -41,6 +41,7 @@ class _FacultyHomeScreenState extends State<facultyHomeScreen> {
             child: Column(
               children: <Widget>[
                 SizedBox(height :10),
+                Text("This is faculty home screen"),
                 Text("Select the Complaint Type",
                   style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400,fontFamily: "Poppins")
                 ),
