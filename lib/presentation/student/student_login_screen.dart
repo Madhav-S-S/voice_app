@@ -74,6 +74,9 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xff001C2E),
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.white,
         elevation: 10,
         items: [
           BottomNavigationBarItem(
