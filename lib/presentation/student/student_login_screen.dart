@@ -11,10 +11,10 @@ class StudentSignInScreen extends StatefulWidget {
   const StudentSignInScreen({Key? key}) : super(key: key);
 
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  _StudentSignInScreenState createState() => _StudentSignInScreenState();
 }
 
-class _SignInScreenState extends State<StudentSignInScreen> {
+class _StudentSignInScreenState extends State<StudentSignInScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   @override
@@ -63,7 +63,7 @@ class _SignInScreenState extends State<StudentSignInScreen> {
                           password: _passwordTextController.text)
                       .then((value) {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => studentHomeScreen()));
+                        MaterialPageRoute(builder: (context) => FacultySignInScreen()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });
@@ -80,10 +80,8 @@ class _SignInScreenState extends State<StudentSignInScreen> {
         selectedItemColor: Colors.white,
         //create an onTap function to navigate to faculty_login_screen.dart
         onTap: (index) {
-          if (index == 1) {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => StudentSignInScreen()));
-          }
         },
         elevation: 10,
         items: [

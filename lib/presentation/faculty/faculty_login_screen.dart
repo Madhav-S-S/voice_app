@@ -10,10 +10,10 @@ class FacultySignInScreen extends StatefulWidget {
   const FacultySignInScreen({Key? key}) : super(key: key);
 
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  _FacultySignInScreenState createState() => _FacultySignInScreenState();
 }
 
-class _SignInScreenState extends State<FacultySignInScreen> {
+class _FacultySignInScreenState extends State<FacultySignInScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   @override
@@ -45,7 +45,7 @@ class _SignInScreenState extends State<FacultySignInScreen> {
                          const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("SAINTGITS MAIL ID", Icons.person_outline, false,
+                reusableTextField("FACULTY MAIL ID", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
