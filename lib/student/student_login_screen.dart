@@ -15,6 +15,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool _isLoading = false;
   bool _isObscure3 = true;
   bool visible = false;
   final _formkey = GlobalKey<FormState>();
@@ -154,13 +155,17 @@ class _LoginPageState extends State<LoginPage> {
                         signIn(
                             emailController.text, passwordController.text);
                       },
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
+                      child: !_isLoading
+                      ? const Text(
+                          'Log in',
+                            style: TextStyle(
                           fontSize: 20,
                           color: Colors.black,
                         ),
-                      ),
+                        )
+                      : const CircularProgressIndicator(
+                          color: voiceBlue
+                        ),
                       color: Colors.white,
                     ),
                     SizedBox(
@@ -183,7 +188,6 @@ class _LoginPageState extends State<LoginPage> {
                           )
                         ],
                       ),
-                  
                   ],
                 ),
               ),
@@ -225,6 +229,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void signIn(String email, String password) async {
+    setState(() {
+      _isLoading = true;
+    });
     if (_formkey.currentState!.validate()) {
       try {
         UserCredential userCredential =
@@ -232,6 +239,9 @@ class _LoginPageState extends State<LoginPage> {
           email: email,
           password: password,
         );
+        setState(() {
+          _isLoading = false;
+        });
         route();
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
