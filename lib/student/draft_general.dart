@@ -26,10 +26,14 @@ class _draftGeneralState extends State<draftGeneral> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
         centerTitle: false,
-        backgroundColor: Color.fromRGBO(0, 28, 46, 1),
+        backgroundColor: Colors.white,
         title: const Text(
           "New Complaint",
+          style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold, fontSize: 20),
         ),
         actions: [
           TextButton(onPressed: (){
@@ -45,7 +49,7 @@ class _draftGeneralState extends State<draftGeneral> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(10.0),
               child: TextField(
                 controller: _titleController,
                 decoration: InputDecoration(
