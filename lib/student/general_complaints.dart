@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:voice/reusable_widgets/post_card.dart';
 import 'package:voice/student/draft_general.dart';
 
 class generalComplaints extends StatefulWidget {
@@ -31,6 +32,7 @@ class _generalComplaintsState extends State<generalComplaints> {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal,fontFamily: "Poppins"),
         ),
       ),
+      body: const PostCard()
     );
   }
 }
