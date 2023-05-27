@@ -29,7 +29,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Voice',
-      theme: ThemeData.dark(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
       home: user!=null?studentHomeScreen():LoginPage(),
     );
   }
