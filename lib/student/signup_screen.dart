@@ -257,6 +257,7 @@ class _SignUpState extends State<SignUpScreen> {
                             "Register",
                             style: TextStyle(
                               fontSize: 20,
+                              color: Colors.black,
                             ),
                           ),
                           color: Colors.white,

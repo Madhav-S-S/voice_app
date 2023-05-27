@@ -42,7 +42,7 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
               children: <Widget>[
                 SizedBox(height :10),
                 Text("Select the Complaint Type",
-                  style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400,fontFamily: "Poppins")
+                  style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400,fontFamily: "Poppins")
                 ),
                 SizedBox(height:20),
                 GestureDetector(
@@ -134,6 +134,7 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
                         "Log Out",
                         style: TextStyle(
                           fontSize: 20,
+                          color: Colors.black,
                         ),
                       ),
                       color: Colors.white,
