@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
+import 'package:voice/student/general_complaints.dart';
 
 class draftGeneral extends StatefulWidget {
   const draftGeneral({Key? key}) : super(key: key);
@@ -8,6 +12,16 @@ class draftGeneral extends StatefulWidget {
 }
 
 class _draftGeneralState extends State<draftGeneral> {
+  final _auth = FirebaseAuth.instance;
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _titleController.dispose();
+    _descriptionController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +32,10 @@ class _draftGeneralState extends State<draftGeneral> {
           "New Complaint",
         ),
         actions: [
-          TextButton(onPressed: (){},
+          TextButton(onPressed: (){
+            addComplaintToFirestore(_titleController.text, _descriptionController.text);
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>generalComplaints()));
+          },
            child: const Text("Post",style: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold, fontSize: 16),))
         ],
       ),
@@ -30,6 +47,7 @@ class _draftGeneralState extends State<draftGeneral> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
+                controller: _titleController,
                 decoration: InputDecoration(
                   hintText: "Title",
                   hintStyle: TextStyle(color: Colors.grey,fontSize: 25),
@@ -44,6 +62,7 @@ class _draftGeneralState extends State<draftGeneral> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
+                  controller: _descriptionController,
                   maxLines: null,
                   decoration: InputDecoration(
                       hintText: "Description",
@@ -58,5 +77,15 @@ class _draftGeneralState extends State<draftGeneral> {
         ),
       )
     );
+  }
+  addComplaintToFirestore(String title,String description) async {
+    var user = _auth.currentUser;
+    String postId = Uuid().v4();
+    DocumentReference docRef = FirebaseFirestore.instance.collection('complaints').doc(postId);
+    docRef.set({
+    'title': title,
+    'description': description,
+    'userId': user?.uid,
+  });
   }
 }
