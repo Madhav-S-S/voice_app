@@ -113,7 +113,28 @@ class _FacultyHomeScreenState extends State<facultyHomeScreen> {
                   ]
                 )
                 ),
-                
+                MaterialButton(
+                      minWidth: MediaQuery.of(context).size.width-100,
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+                      elevation: 5.0,
+                      height: 50,
+                      onPressed: () {
+                            FirebaseAuth.instance.signOut().then((value) {
+                              print("Signed Out");
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => LoginPage()));
+                            });
+                          },
+                      child: Text(
+                        "Log Out",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      color: Colors.white,
+                    ),
               ],
             ),
           ))),

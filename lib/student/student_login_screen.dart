@@ -7,7 +7,6 @@ import 'package:voice/student/signup_screen.dart';
 import 'package:voice/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/core/utils/image_constant.dart';
-import 'package:voice/faculty/faculty_login_screen.dart';
 //keep user logged in even after closing the app
 import 'package:shared_preferences/shared_preferences.dart';
 class LoginPage extends StatefulWidget {
