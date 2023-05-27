@@ -66,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                         filled: true,
                         fillColor: Color(0x77ffffff),
                         hintText: 'SAINTGITS MAIL ID',
+                         hintStyle: TextStyle(color: Colors.white38),
                         enabled: true,
                         contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         focusedBorder: OutlineInputBorder(
@@ -112,6 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                         filled: true,
                         fillColor: Color(0x77ffffff),
                         hintText: 'PASSWORD',
+                        hintStyle: TextStyle(color: Colors.white38),
                         enabled: true,
                         contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         focusedBorder: OutlineInputBorder(

@@ -37,6 +37,7 @@ class _draftGeneralState extends State<draftGeneral> {
                   border: InputBorder.none,
                 ),
                 cursorHeight: 30,
+                style: TextStyle(fontSize: 25),
               ),
             ),
             Expanded(
@@ -49,6 +50,7 @@ class _draftGeneralState extends State<draftGeneral> {
                       hintStyle: TextStyle(color: Colors.grey),
                       border: InputBorder.none
                   ),
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
             ),
