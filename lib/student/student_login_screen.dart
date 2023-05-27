@@ -15,6 +15,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  int _passwordCorrect = 0;//means the password is not typed
   bool _isLoading = false;
   bool _isObscure3 = true;
   bool visible = false;
@@ -168,6 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       color: Colors.white,
                     ),
+                    checkCorrection(_passwordCorrect),
                     SizedBox(
                       height: 20,
                     ),
@@ -242,15 +244,29 @@ class _LoginPageState extends State<LoginPage> {
         setState(() {
           _isLoading = false;
         });
+        _passwordCorrect = 1;//means password is correct
         route();
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           print('No user found for that email.');
         } else if (e.code == 'wrong-password') {
+          _passwordCorrect = 2;//means password is not correct
+          //display in the screen that password is wrong
           print('Wrong password provided for that user.');
         }
       }
     }
+  }
+}
+
+checkCorrection(_passwordCorrect) {
+  if (_passwordCorrect == 2) {
+    return Text(
+      "Password is incorrect",
+      style: TextStyle(color: Colors.red),
+    );
+  } else {
+    return Text("");
   }
 }
 
