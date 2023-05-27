@@ -164,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         )
                       : const CircularProgressIndicator(
-                          color: voiceBlue
+                          color: Colors.blue
                         ),
                       color: Colors.white,
                     ),
