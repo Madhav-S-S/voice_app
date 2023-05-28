@@ -42,8 +42,9 @@ class _SplashScreenState extends State<SplashScreen> {
   
     return AnimatedSplashScreen(
       splash: 'assets/images/img_voiceicon.png',
+      splashIconSize: 150,
       nextScreen: LoginPage(),
-      splashTransition: SplashTransition.rotationTransition,
+      splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.scale,
       backgroundColor: voiceBlue,
     );
