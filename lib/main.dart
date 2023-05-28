@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
       splashIconSize: 150,
       nextScreen: LoginPage(),
       splashTransition: SplashTransition.fadeTransition,
-      pageTransitionType: PageTransitionType.scale,
+      pageTransitionType: PageTransitionType.rightToLeftWithFade,
       backgroundColor: voiceBlue,
     );
   }
