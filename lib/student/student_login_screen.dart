@@ -15,6 +15,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  int _emailCorrect = 0;//means the email is not typed
+  int _passwordCorrect = 0;//means the password is not typed
+  bool _isLoading = false;
   bool _isObscure3 = true;
   bool visible = false;
   final _formkey = GlobalKey<FormState>();
@@ -63,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                         filled: true,
                         fillColor: Color(0x77ffffff),
                         hintText: 'SAINTGITS MAIL ID',
+                         hintStyle: TextStyle(color: Colors.white38),
                         enabled: true,
                         contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         focusedBorder: OutlineInputBorder(
@@ -109,6 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                         filled: true,
                         fillColor: Color(0x77ffffff),
                         hintText: 'PASSWORD',
+                        hintStyle: TextStyle(color: Colors.white38),
                         enabled: true,
                         contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         focusedBorder: OutlineInputBorder(
@@ -154,15 +159,21 @@ class _LoginPageState extends State<LoginPage> {
                         signIn(
                             emailController.text, passwordController.text);
                       },
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
+                      child: !_isLoading
+                      ? const Text(
+                          'Log in',
+                            style: TextStyle(
                           fontSize: 20,
                           color: Colors.black,
                         ),
-                      ),
+                        )
+                      : const CircularProgressIndicator(
+                          color: Colors.blue
+                        ),
                       color: Colors.white,
                     ),
+                    checkPassword(_passwordCorrect),
+                    checkEmail(_emailCorrect),
                     SizedBox(
                       height: 20,
                     ),
@@ -183,7 +194,6 @@ class _LoginPageState extends State<LoginPage> {
                           )
                         ],
                       ),
-                  
                   ],
                 ),
               ),
@@ -225,6 +235,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void signIn(String email, String password) async {
+    setState(() {
+      _isLoading = true;
+    });
     if (_formkey.currentState!.validate()) {
       try {
         UserCredential userCredential =
@@ -232,17 +245,47 @@ class _LoginPageState extends State<LoginPage> {
           email: email,
           password: password,
         );
+        setState(() {
+          _isLoading = false;
+        });
+        _passwordCorrect = 1;//means password is correct
         route();
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
+          _emailCorrect = 2;//means email is not correct
           print('No user found for that email.');
         } else if (e.code == 'wrong-password') {
+          _passwordCorrect = 2;//means password is not correct
+          //display in the screen that password is wrong
           print('Wrong password provided for that user.');
         }
       }
     }
   }
 }
+
+checkPassword(_passwordCorrect) {
+  if (_passwordCorrect == 2) {
+    return Text(
+      "Password is incorrect",
+      style: TextStyle(color: Colors.red),
+    );
+  } else {
+    return Text("");
+  }
+}
+checkEmail(_emailCorrect) {
+  if (_emailCorrect == 2) {
+    return Text(
+      "No user found for that email",
+      style: TextStyle(color: Colors.red),
+    );
+  } else {
+    return Text("");
+  }
+}
+
+
 
 
 

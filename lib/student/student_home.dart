@@ -1,3 +1,6 @@
+import 'package:voice/student/general_complaints.dart';
+import 'package:voice/student/open_complaints.dart';
+import 'package:voice/student/personal_complaints.dart';
 import 'package:voice/student/student_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -47,7 +50,8 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
                 SizedBox(height:20),
                 GestureDetector(
                   onTap: (){
-                    print("clicked");
+
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>generalComplaints()));
                   },
                   child: Container(height:150,width:1000,
                       child: Center(
@@ -71,46 +75,56 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
                   ),
                 ),
                 SizedBox(height: 30,),
-                Container(height:150,width:1000,
-                    child: Center(
-                      child: Text("OPEN",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize:30,fontFamily: "Poppins",color: Colors.white),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>openComplaints()));
+                  },
+                  child: Container(height:150,width:1000,
+                      child: Center(
+                        child: Text("OPEN",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize:30,fontFamily: "Poppins",color: Colors.white),
+                        ),
                       ),
-                    ),
-                 decoration: BoxDecoration(
-              color: Color.fromRGBO(0, 125, 200,1),
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  spreadRadius: 1,
-                  blurRadius: 8,
-                  offset: Offset(4, 4),
-                    )
-                  ]
-                )
+                   decoration: BoxDecoration(
+                              color: Color.fromRGBO(0, 125, 200,1),
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    spreadRadius: 1,
+                    blurRadius: 8,
+                    offset: Offset(4, 4),
+                      )
+                    ]
+                  )
+                  ),
                 ),
                 SizedBox(height: 30),
-                Container(height:150,width:1000,
-                    child: Center(
-                      child: Text("PERSONAL",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize:30,fontFamily: "Poppins",color: Colors.white),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>personalComplaints()));
+                  },
+                  child: Container(height:150,width:1000,
+                      child: Center(
+                        child: Text("PERSONAL",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize:30,fontFamily: "Poppins",color: Colors.white),
+                        ),
                       ),
-                    ),
-                 decoration: BoxDecoration(
-              color: Color.fromRGBO(0, 134, 215,1),
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  spreadRadius: 1,
-                  blurRadius: 8,
-                  offset: Offset(4, 4),
-                    )
-                  ]
-                )
+                   decoration: BoxDecoration(
+                              color: Color.fromRGBO(0, 134, 215,1),
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    spreadRadius: 1,
+                    blurRadius: 8,
+                    offset: Offset(4, 4),
+                      )
+                    ]
+                  )
+                  ),
                 ),
                 SizedBox(
                       height: 40,
