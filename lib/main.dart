@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:voice/student/student_home.dart';
 import 'package:voice/student/student_login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:voice/student/signup_screen.dart';
+import 'package:voice/utils/color_utils.dart';
 import 'package:page_transition/page_transition.dart';//test modification for showing git push
 //test modification for showing git push
 
@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
       nextScreen: LoginPage(),
       splashTransition: SplashTransition.rotationTransition,
       pageTransitionType: PageTransitionType.scale,
-      backgroundColor: Colors.black12,
+      backgroundColor: voiceBlue,
     );
   }
 }
