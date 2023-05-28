@@ -10,7 +10,13 @@ class PostCard extends StatelessWidget {
           Card(
             child: Column(
               children: [
+                //space for displaying the username of the user who posted
                 ListTile(
+                  leading: const CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"),
+                  ),
+                  
                   title: const Text(
                     "Title",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -27,8 +33,9 @@ class PostCard extends StatelessWidget {
                       onPressed: () {},
                       icon: const Icon(Icons.arrow_upward),
                     ),
-                    const SizedBox(
-                      width: 8,
+                    const Text(
+                      "0",
+                      style: TextStyle(fontSize: 20),
                     ),
                     IconButton(
                       onPressed: () {},
