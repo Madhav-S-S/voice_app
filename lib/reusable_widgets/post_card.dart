@@ -98,21 +98,19 @@ class PostCard extends StatelessWidget {
             ),
           ),
           // IMAGE SECTION OF THE POST
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.35,
-                width: double.infinity,
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Text(
-                    'Description',
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 24,
+            ),
+            child: SizedBox(
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Description',
+                  style: Theme.of(context).textTheme.headline6,
                 ),
               ),
-            ],
+            ),
           ),
           // LIKE, COMMENT SECTION OF THE POST
           Row(
