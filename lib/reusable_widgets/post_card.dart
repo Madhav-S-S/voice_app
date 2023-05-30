@@ -3,13 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:voice/methods/firestore_methods.dart';
-class PostCard extends StatelessWidget {
+class PostCard extends StatefulWidget {
     final snap;
   const PostCard({
     Key? key,
     required this.snap,
   }) : super(key: key);
+    
 
+  @override
+  State<PostCard> createState() => _PostCardState();
+}
+
+class _PostCardState extends State<PostCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -54,7 +60,7 @@ class PostCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          this.snap['title'].toString(),
+                          this.widget.snap['title'].toString(),
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -113,7 +119,7 @@ class PostCard extends StatelessWidget {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  this.snap['description'].toString(),
+                  this.widget.snap['description'].toString(),
                   style: TextStyle(fontWeight: FontWeight.normal),
                 ),
               ),
@@ -137,7 +143,7 @@ class PostCard extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Text(
                   DateFormat.yMMMd().format(
-                    snap['datePublished'].toDate(),
+                    widget.snap['datePublished'].toDate(),
                   ),
                   style: TextStyle(fontWeight: FontWeight.normal),
                 ),
@@ -153,10 +159,15 @@ class PostCard extends StatelessWidget {
                     icon: const Icon(Icons.arrow_circle_up_rounded), 
                     onPressed: () {
                       // call the upvote function
-                      
+                      var user = FirebaseAuth.instance.currentUser;
+                      FireStoreMethods().UpvotePost(
+                        widget.snap['postId'].toString(),
+                        user!.uid,
+                        widget.snap['upvotes'],
+                      );
                     }),
               )),
-              Text(snap['upvotes'].toString() + ' Upvotes'),
+              Text('${widget.snap['upvotes'].length} upvotes',),
               Align(
                 alignment: Alignment.bottomRight,
                 child: IconButton(
