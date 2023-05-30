@@ -38,8 +38,13 @@ class _draftGeneralState extends State<draftGeneral> {
         ),
         actions: [
           TextButton(onPressed: (){
-            addComplaintToFirestore(_titleController.text, _descriptionController.text);
+            if(_titleController.text.length ==0){
+              print("Title Required");
+            }
+            else{
+                addComplaintToFirestore(_titleController.text, _descriptionController.text);
             Navigator.push(context, MaterialPageRoute(builder: (context)=>generalComplaints()));
+            }
           },
            child: const Text("Post",style: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold, fontSize: 16),))
         ],
