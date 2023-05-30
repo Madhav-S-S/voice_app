@@ -38,7 +38,7 @@ class _draftGeneralState extends State<draftGeneral> {
         ),
         actions: [
           TextButton(onPressed: (){
-            if(_titleController.text.length ==0){
+            if(_titleController.text.length ==0 || _descriptionController.text.length ==0){
               print("Title Required");
             }
             else{
