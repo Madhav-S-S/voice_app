@@ -96,6 +96,7 @@ class _draftGeneralState extends State<draftGeneral> {
     'title': title,
     'description': description,
     'userId': user?.uid,
+    'datePublished' : DateTime.now(),
     'postId': postId,
     'upvotes': 0,
   });

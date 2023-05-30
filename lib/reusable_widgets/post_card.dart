@@ -104,30 +104,17 @@ class PostCard extends StatelessWidget {
             ),
           ),
           // IMAGE SECTION OF THE POST
-          GestureDetector(
-            // onDoubleTap: () {
-            //   var user = FirebaseAuth.instance.currentUser;
-            //   FireStoreMethods().likePost(
-            //     this.snap['postId'].toString(),
-            //     user.email,
-            //     this.snap['likes'],
-            //   );
-            //   setState(() {
-            //     isLikeAnimating = true;
-            //   });
-            // },
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 24,
-                right: 24,
-              ),
-              child: SizedBox(
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    this.snap['description'].toString(),
-                    style: TextStyle(fontWeight: FontWeight.normal),
-                  ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 24,
+              right: 24,
+            ),
+            child: SizedBox(
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  this.snap['description'].toString(),
+                  style: TextStyle(fontWeight: FontWeight.normal),
                 ),
               ),
             ),
@@ -140,15 +127,36 @@ class PostCard extends StatelessWidget {
                   Icons.flag,
                 ),
                 onPressed: () {}),
+                Padding(
+            padding: const EdgeInsets.only(
+              left: 10,
+              right: 24,
+            ),
+            child: SizedBox(
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  DateFormat.yMMMd().format(
+                    snap['datePublished'].toDate(),
+                  ),
+                  style: TextStyle(fontWeight: FontWeight.normal),
+                ),
+              ),
+            ),
+          ),
                   Expanded(
                   child: Align(
                 alignment: Alignment.bottomRight,
                 child: IconButton(
                   iconSize: 30.0,
                   //increase the size of the icon
-                    icon: const Icon(Icons.arrow_circle_up_rounded), onPressed: () {}),
+                    icon: const Icon(Icons.arrow_circle_up_rounded), 
+                    onPressed: () {
+                      // call the upvote function
+                      
+                    }),
               )),
-              Text("0"),
+              Text(snap['upvotes'].toString() + ' Upvotes'),
               Align(
                 alignment: Alignment.bottomRight,
                 child: IconButton(
@@ -157,6 +165,7 @@ class PostCard extends StatelessWidget {
               )
             ],
           ),
+          //date published of the post
         ]
       )
     );

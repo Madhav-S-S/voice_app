@@ -6,10 +6,10 @@ import 'package:uuid/uuid.dart';
 class FireStoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<String> likePost(String postId, String uid, List likes) async {
+  Future<String> UpvotePost(String postId, String uid, List upvotes) async {
     String res = "Some error occurred";
     try {
-      if (likes.contains(uid)) {
+      if (upvotes.contains(uid)) {
         // if the likes list contains the user uid, we need to remove it
         _firestore.collection('complaints').doc(postId).update({
           'upvotes': FieldValue.arrayRemove([uid])

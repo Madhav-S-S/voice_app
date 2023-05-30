@@ -314,7 +314,7 @@ class _SignUpState extends State<SignUpScreen> {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     var user = _auth.currentUser;
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
-    ref.doc(user!.uid).set({'email': emailController.text, 'role': role});
+    ref.doc(user!.uid).set({'email': emailController.text, 'role': role,'uid':user.uid});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
     }catch(e){
