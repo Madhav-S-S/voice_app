@@ -1,61 +1,143 @@
 import 'package:flutter/material.dart';
 class PostCard extends StatelessWidget {
-  const PostCard({Key? key}) : super(key: key);
+    final snap;
+  const PostCard({
+    Key? key,
+    required this.snap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      // boundary needed for web
+      constraints: const BoxConstraints(
+        maxWidth: 700,
+      ),
+      // margin: const EdgeInsets.symmetric(
+      //   vertical: 8,
+      //   horizontal: 16,
+      // ),
+      //border color set
+      decoration: BoxDecoration(
+        color: Colors.black,
+        border: Border.all(
+          color: Colors.white,
+          width: 0.2,)
+      ),
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+      ),
       child: Column(
         children: [
-          Card(
-            child: Column(
-              children: [
-                //space for displaying the username of the user who posted
-                ListTile(
-                  leading: const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"),
-                  ),
-                  
-                  title: const Text(
-                    "Title",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: const Text(
-                    "Description",
-                    style: TextStyle(fontSize: 15),
+          // HEADER SECTION OF THE POST
+          Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 16,
+            ).copyWith(right: 0),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 8,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Title',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.arrow_upward),
-                    ),
-                    const Text(
-                      "0",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.arrow_downward),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    // icon button for flagging a post
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.flag),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                  ],
-                ),
+
+                  IconButton(
+                        onPressed: () {
+                          showDialog(
+                            useRootNavigator: false,
+                            context: context,
+                            builder: (context) {
+                              return Dialog(
+                                child: ListView(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16),
+                                    shrinkWrap: true,
+                                    children: [
+                                      'Delete',
+                                    ]
+                                        .map(
+                                          (e) => InkWell(
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 12,
+                                                        horizontal: 16),
+                                                child: Text(e),
+                                              ),
+                                              onTap: () {
+                                                // remove the dialog box
+                                                Navigator.of(context).pop();
+                                              }),
+                                        )
+                                        .toList()),
+                              );
+                            },
+                          );
+                        },
+                        icon: const Icon(Icons.more_vert),
+                      ),
+                 Container(),
               ],
             ),
+          ),
+          // IMAGE SECTION OF THE POST
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.35,
+                width: double.infinity,
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    'Description',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          // LIKE, COMMENT SECTION OF THE POST
+          Row(
+            children: <Widget>[
+              IconButton(
+                icon: const Icon(
+                  Icons.flag,
+                ),
+                onPressed: () {}),
+                  Expanded(
+                  child: Align(
+                alignment: Alignment.bottomRight,
+                child: IconButton(
+                  iconSize: 30.0,
+                  //increase the size of the icon
+                    icon: const Icon(Icons.arrow_circle_up_rounded), onPressed: () {}),
+              )),
+              Text("0"),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: IconButton(
+              iconSize: 30.0,
+                icon: const Icon(Icons.arrow_circle_down_rounded), onPressed: () {}),
+              )
+            ],
           ),
         ]
       )

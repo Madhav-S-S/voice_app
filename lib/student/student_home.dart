@@ -32,12 +32,7 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
       body:Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            hexStringToColor("ffffff"),
-            hexStringToColor("ffffff"),
-            hexStringToColor("318CE7")
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          color:Colors.black,
           child: SingleChildScrollView(
               child: Padding(
             padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
@@ -45,7 +40,7 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
               children: <Widget>[
                 SizedBox(height :10),
                 Text("Select the Complaint Type",
-                  style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400,fontFamily: "Poppins")
+                  style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w400,fontFamily: "Poppins")
                 ),
                 SizedBox(height:20),
                 GestureDetector(
@@ -61,7 +56,8 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
                         ),
                       ),
                    decoration: BoxDecoration(
-                              color: Color.fromRGBO(0, 114, 182,1),
+                              //make the color of the container transparent
+                              color: Color(0x33FFFFFF),
                               borderRadius: BorderRadius.circular(15),
                               boxShadow: [
                   BoxShadow(

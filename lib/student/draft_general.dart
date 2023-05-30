@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'package:voice/student/general_complaints.dart';
+import 'package:voice/utils/color_utils.dart';
 
 class draftGeneral extends StatefulWidget {
   const draftGeneral({Key? key}) : super(key: key);
@@ -27,13 +28,13 @@ class _draftGeneralState extends State<draftGeneral> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
         ),
         centerTitle: false,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         title: const Text(
           "New Complaint",
-          style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold, fontSize: 20),
+          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 20),
         ),
         actions: [
           TextButton(onPressed: (){
@@ -45,7 +46,7 @@ class _draftGeneralState extends State<draftGeneral> {
       ),
       body:Container(
         //change color of the container
-        color: Colors.white,
+        color: Colors.black,
         child: Column(
           children: [
             Padding(
@@ -90,6 +91,7 @@ class _draftGeneralState extends State<draftGeneral> {
     'title': title,
     'description': description,
     'userId': user?.uid,
+    'postId': postId,
   });
   }
 }

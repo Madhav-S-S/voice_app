@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/reusable_widgets/post_card.dart';
 import 'package:voice/student/draft_general.dart';
@@ -32,7 +33,24 @@ class _generalComplaintsState extends State<generalComplaints> {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal,fontFamily: "Poppins"),
         ),
       ),
-      body: const PostCard()
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('complaints').snapshots(),
+        builder: (context,
+            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return ListView.builder(
+            itemCount: snapshot.data!.docs.length,
+            itemBuilder: (context, index) => PostCard(
+              snap : snapshot.data!.docs[index].data(),
+            ),
+         
+          );
+        },
+      ),
     );
   }
 }
