@@ -26,6 +26,26 @@ class FireStoreMethods {
     }
     return res;
   }
+   Future<String> DownvotePost(String postId, String uid, List downvotes) async {
+    String res = "Some error occurred";
+    try {
+      if (downvotes.contains(uid)) {
+        // if the likes list contains the user uid, we need to remove it
+        _firestore.collection('complaints').doc(postId).update({
+          'downvotes': FieldValue.arrayRemove([uid])
+        });
+      } else {
+        // else we need to add uid to the likes array
+        _firestore.collection('complaints').doc(postId).update({
+          'downvotes': FieldValue.arrayUnion([uid])
+        });
+      }
+      res = 'success';
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
+  }
   Future<String> deletePost(String postId) async {
     String res = "Some error occurred";
     try {

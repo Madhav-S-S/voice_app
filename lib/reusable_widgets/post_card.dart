@@ -167,12 +167,19 @@ class _PostCardState extends State<PostCard> {
                       );
                     }),
               )),
-              Text('${widget.snap['upvotes'].length} upvotes',),
+              Text('${widget.snap['upvotes'].length - widget.snap['downvotes'].length} upvotes',),
               Align(
                 alignment: Alignment.bottomRight,
                 child: IconButton(
               iconSize: 30.0,
-                icon: const Icon(Icons.arrow_circle_down_rounded), onPressed: () {}),
+                icon: const Icon(Icons.arrow_circle_down_rounded), onPressed: () {
+                  var user = FirebaseAuth.instance.currentUser;
+                    FireStoreMethods().DownvotePost(
+                      widget.snap['postId'].toString(),
+                      user!.uid,
+                      widget.snap['downvotes'],
+                    );
+                }),
               )
             ],
           ),
