@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 class PostCard extends StatelessWidget {
     final snap;
   const PostCard({
@@ -50,7 +52,7 @@ class PostCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Title',
+                          this.snap['title'].toString(),
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -104,13 +106,14 @@ class PostCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(
               left: 24,
+              right: 24,
             ),
             child: SizedBox(
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Description',
-                  style: Theme.of(context).textTheme.headline6,
+                  this.snap['description'].toString(),
+                  style: TextStyle(fontWeight: FontWeight.normal),
                 ),
               ),
             ),
