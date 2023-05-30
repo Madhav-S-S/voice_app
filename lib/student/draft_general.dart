@@ -97,6 +97,7 @@ class _draftGeneralState extends State<draftGeneral> {
     'description': description,
     'userId': user?.uid,
     'postId': postId,
+    'upvotes': 0,
   });
   }
 }

@@ -7,6 +7,7 @@ import 'package:voice/utils/color_utils.dart';
 //import 'login.dart';
 // import 'model.dart';
 
+
 class SignUpScreen extends StatefulWidget {
   @override
   _SignUpState createState() => _SignUpState();
@@ -251,7 +252,8 @@ class _SignUpState extends State<SignUpScreen> {
                               showProgress = true;
                             });
                             signUp(emailController.text,
-                                passwordController.text, role);
+                                passwordController.text, 
+                                role);
                           },
                           child: Text(
                             "Register",
@@ -308,11 +310,15 @@ class _SignUpState extends State<SignUpScreen> {
   }
 
   postDetailsToFirestore(String email, String role) async {
+    try{
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     var user = _auth.currentUser;
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
     ref.doc(user!.uid).set({'email': emailController.text, 'role': role});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
+    }catch(e){
+      print(e);
+    }
   }
 }

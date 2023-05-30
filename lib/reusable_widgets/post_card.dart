@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:voice/methods/firestore_methods.dart';
 class PostCard extends StatelessWidget {
     final snap;
   const PostCard({
@@ -98,22 +100,34 @@ class PostCard extends StatelessWidget {
                         },
                         icon: const Icon(Icons.more_vert),
                       ),
-                 Container(),
               ],
             ),
           ),
           // IMAGE SECTION OF THE POST
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 24,
-              right: 24,
-            ),
-            child: SizedBox(
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  this.snap['description'].toString(),
-                  style: TextStyle(fontWeight: FontWeight.normal),
+          GestureDetector(
+            // onDoubleTap: () {
+            //   var user = FirebaseAuth.instance.currentUser;
+            //   FireStoreMethods().likePost(
+            //     this.snap['postId'].toString(),
+            //     user.email,
+            //     this.snap['likes'],
+            //   );
+            //   setState(() {
+            //     isLikeAnimating = true;
+            //   });
+            // },
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 24,
+                right: 24,
+              ),
+              child: SizedBox(
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    this.snap['description'].toString(),
+                    style: TextStyle(fontWeight: FontWeight.normal),
+                  ),
                 ),
               ),
             ),
