@@ -20,9 +20,12 @@ class PostCard extends StatelessWidget {
       //border color set
       decoration: BoxDecoration(
         color: Colors.black,
-        border: Border.all(
-          color: Colors.white,
-          width: 0.2,)
+        border: Border.symmetric(
+          horizontal: BorderSide(
+            color: Colors.grey,
+            width: 0.1,
+          ),
+        ),
       ),
       padding: const EdgeInsets.symmetric(
         vertical: 10,
