@@ -97,7 +97,7 @@ class _PostCardState extends State<PostCard> {
                                         vertical: 16),
                                     shrinkWrap: true,
                                     children: [
-                                      'Delete',
+                                       if(widget.snap['userId'] == user!.uid)'Delete',
                                     ]
                                         .map(
                                           (e) => InkWell(
@@ -108,6 +108,7 @@ class _PostCardState extends State<PostCard> {
                                                         horizontal: 16),
                                                 child: Text(e),
                                               ),
+
                                               onTap: () {
                                                 deletePost(
                                                   widget.snap['postId']
@@ -115,7 +116,8 @@ class _PostCardState extends State<PostCard> {
                                                 );
                                                 // remove the dialog box
                                                 Navigator.of(context).pop();
-                                              }),
+                                              }
+                                            ),
                                         )
                                         .toList()),
                               );
