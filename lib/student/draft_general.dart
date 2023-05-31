@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'package:voice/student/general_complaints.dart';
 import 'package:voice/utils/color_utils.dart';
+import 'package:voice/reusable_widgets/post_card.dart';
 
 class draftGeneral extends StatefulWidget {
   const draftGeneral({Key? key}) : super(key: key);
@@ -93,6 +94,8 @@ class _draftGeneralState extends State<draftGeneral> {
   addComplaintToFirestore(String title,String description) async {
     var user = _auth.currentUser;
     String postId = Uuid().v4();
+    //get branch attribute from the current user from firestore
+    String branch = (await FirebaseFirestore.instance.collection('users').doc(user?.uid).get()).get('branch');
     DocumentReference docRef = FirebaseFirestore.instance.collection('complaints').doc(postId);
     docRef.set({
     'title': title,
@@ -103,6 +106,7 @@ class _draftGeneralState extends State<draftGeneral> {
     //set the value of 'upvotes' in firestore to an empty array
     'upvotes': [],
     'downvotes': [],
+    'branch': branch,
   });
   }
 }

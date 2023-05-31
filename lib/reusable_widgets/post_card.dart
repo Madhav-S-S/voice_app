@@ -207,13 +207,4 @@ class _PostCardState extends State<PostCard> {
       )
     );
   }
- bool checkUpvoteStatus(){
-    var user = FirebaseAuth.instance.currentUser;
-    if(widget.snap['upvotes'].contains(user!.uid)){
-      return true;
-    }
-    else{
-      return false;
-    }
-  }
 }

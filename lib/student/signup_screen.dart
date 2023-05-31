@@ -234,14 +234,6 @@ class _SignUpState extends State<SignUpScreen> {
                               //make the color of the container transparent
                               color: Color(0x33FFFFFF),
                               borderRadius: BorderRadius.circular(15),
-                              boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                spreadRadius: 1,
-                                blurRadius: 8,
-                                offset: Offset(4, 4),
-                                  )
-                                ]
                               ),
                               child: DropdownButton<String>(
                                 dropdownColor: voiceBlue,
@@ -297,14 +289,6 @@ class _SignUpState extends State<SignUpScreen> {
                                       //make the color of the container transparent
                                       color: Color(0x33FFFFFF),
                                       borderRadius: BorderRadius.circular(15),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey,
-                                          spreadRadius: 1,
-                                          blurRadius: 8,
-                                          offset: Offset(4, 4),
-                                        )
-                                      ]
                                     ),
                                     child: DropdownButton<String>(
                                       dropdownColor: voiceBlue,
@@ -348,9 +332,9 @@ class _SignUpState extends State<SignUpScreen> {
                           elevation: 5.0,
                           height: 50,
                           onPressed: () {
-                            //split the string between '.' and '@' to get the branch
                             setState(() {
                               showProgress = true;
+                              //split the string between '.' and '@' to get the branch
                             });
                             signUp(emailController.text,
                                 passwordController.text, 
@@ -413,7 +397,7 @@ class _SignUpState extends State<SignUpScreen> {
   postDetailsToFirestore(String email, String role) async {
     try{
     var user = _auth.currentUser;
-    var branch = email.split('.').last.split('@').first;
+    var branch = emailController.text.split('.')[1].split('@')[0];
     print(branch);
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
     ref.doc(user!.uid).set({'email': emailController.text, 'role': role,'uid':user.uid,'rollNo':rollNo,'branch':branch});
