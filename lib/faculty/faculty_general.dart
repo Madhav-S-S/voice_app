@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:voice/faculty/fac_postcard.dart';
 import 'package:voice/reusable_widgets/post_card.dart';
 import 'package:voice/student/draft_general.dart';
 import 'package:voice/student/student_home.dart';
@@ -62,7 +63,7 @@ class _facultyGeneralState extends State<facultyGeneral> {
               }
               return ListView.builder(
                 itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) => PostCard(
+                itemBuilder: (context, index) => facultyPostCard(
                   snap : snapshot.data!.docs[index].data(),
                 ),
              

@@ -5,19 +5,19 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:voice/methods/firestore_methods.dart';
 import 'package:voice/reusable_widgets/reusable_widget.dart';
-class PostCard extends StatefulWidget {
+class facultyPostCard extends StatefulWidget {
     final snap;
-  const PostCard({
+  const facultyPostCard({
     Key? key,
     required this.snap,
   }) : super(key: key);
     
 
   @override
-  State<PostCard> createState() => _PostCardState();
+  State<facultyPostCard> createState() => _facultyPostCardState();
 }
 
-class _PostCardState extends State<PostCard> {
+class _facultyPostCardState extends State<facultyPostCard> {
     final database = FirebaseFirestore.instance;
      deletePost(String postId) async {
     try {
@@ -169,36 +169,10 @@ class _PostCardState extends State<PostCard> {
                   Expanded(
                   child: Align(
                 alignment: Alignment.bottomRight,
-                child: IconButton(
-                  iconSize: 30.0,
-                  //increase the size of the icon
-                    icon: widget.snap['upvotes'].contains(user!.uid) ? Icon(Icons.arrow_circle_up_rounded, color: Colors.blue,) : Icon(Icons.arrow_circle_up_rounded, color: Colors.white,
-                    ), 
-                    onPressed: () {
-                      // call the upvote function
-                      var user = FirebaseAuth.instance.currentUser;
-                      FireStoreMethods().UpvotePost(
-                        widget.snap['postId'].toString(),
-                        user!.uid,
-                        widget.snap['upvotes'],
-                      );
-                    }),
               )),
               Text('${widget.snap['upvotes'].length - widget.snap['downvotes'].length} Votes',),
               Align(
                 alignment: Alignment.bottomRight,
-                child: IconButton(
-              iconSize: 30.0,
-              //change the icon color when pressed
-                icon: widget.snap['downvotes'].contains(user!.uid) ? Icon(Icons.arrow_circle_down_rounded, color: Colors.red,) : Icon(Icons.arrow_circle_down_rounded, color: Colors.white,),
-                 onPressed: () {
-                  //change the icon color when pressed
-                    FireStoreMethods().DownvotePost(
-                      widget.snap['postId'].toString(),
-                      user!.uid,
-                      widget.snap['downvotes'],
-                    );
-                }),
               )
             ],
           ),

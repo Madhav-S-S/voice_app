@@ -1,6 +1,8 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:voice/faculty/faculty_home.dart';
 import 'package:voice/student/student_home.dart';
 import 'package:voice/student/student_login_screen.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +34,21 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 2), () async {
       // Check if the user is logged in
       User? user = FirebaseAuth.instance.currentUser;
-      String initialRoute = user != null ? '/home' : '/login';
-      Navigator.of(context).pushReplacementNamed(initialRoute);
+      CollectionReference ref = FirebaseFirestore.instance.collection('users');
+      if (user != null) {
+        DocumentSnapshot doc = await ref.doc(user.uid).get();
+        if (doc.exists) {
+          if (doc.get('role') == 'Student') {
+            Navigator.of(context).pushReplacementNamed('/studenthome');
+          } 
+          else if(doc.get('role') == 'Teacher'){
+            Navigator.of(context).pushReplacementNamed('/facultyhome');
+          }
+        } 
+        else {
+          Navigator.of(context).pushReplacementNamed('/login');
+        }
+      }
     });
   }
 
@@ -70,7 +85,8 @@ class _MyAppState extends State<MyApp> {
       home: SplashScreen(),
       routes: {
         '/login': (context) => LoginPage(),
-        '/home': (context) => studentHomeScreen(),
+        '/studenthome': (context) => studentHomeScreen(),
+        '/facultyhome': (context) => facultyHomeScreen(),
       },
       // home: user!=null?studentHomeScreen():LoginPage(),
     );
