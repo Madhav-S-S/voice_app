@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -16,9 +17,9 @@ class PostCard extends StatefulWidget {
 }
 
 class _PostCardState extends State<PostCard> {
+    final database = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
-    bool _isPressed;
     return Container(
       // boundary needed for web
       constraints: const BoxConstraints(
@@ -157,7 +158,10 @@ class _PostCardState extends State<PostCard> {
                 child: IconButton(
                   iconSize: 30.0,
                   //increase the size of the icon
-                    icon: const Icon(Icons.arrow_circle_up_rounded), 
+                    icon: Icon(Icons.arrow_circle_up_rounded,
+                    //if checkUpvoteStatus is true then the icon color is green else white
+                    color: checkUpvoteStatus() ? Colors.blue : Colors.white,
+                    ), 
                     onPressed: () {
                       // call the upvote function
                       var user = FirebaseAuth.instance.currentUser;
@@ -175,6 +179,7 @@ class _PostCardState extends State<PostCard> {
               iconSize: 30.0,
               //change the icon color when pressed
                 icon: const Icon(Icons.arrow_circle_down_rounded),
+                  color: checkDownvoteStatus() ? Colors.red : Colors.white,
                  onPressed: () {
                   //change the icon color when pressed
                   var user = FirebaseAuth.instance.currentUser;
@@ -191,5 +196,23 @@ class _PostCardState extends State<PostCard> {
         ]
       )
     );
+  }
+ bool checkUpvoteStatus(){
+    var user = FirebaseAuth.instance.currentUser;
+    if(widget.snap['upvotes'].contains(user!.uid)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  bool checkDownvoteStatus(){
+    var user = FirebaseAuth.instance.currentUser;
+    if(widget.snap['downvotes'].contains(user!.uid)){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }
