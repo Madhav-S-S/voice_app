@@ -18,6 +18,7 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   @override
   Widget build(BuildContext context) {
+    bool _isPressed;
     return Container(
       // boundary needed for web
       constraints: const BoxConstraints(
@@ -167,12 +168,15 @@ class _PostCardState extends State<PostCard> {
                       );
                     }),
               )),
-              Text('${widget.snap['upvotes'].length - widget.snap['downvotes'].length} upvotes',),
+              Text('${widget.snap['upvotes'].length - widget.snap['downvotes'].length} Votes',),
               Align(
                 alignment: Alignment.bottomRight,
                 child: IconButton(
               iconSize: 30.0,
-                icon: const Icon(Icons.arrow_circle_down_rounded), onPressed: () {
+              //change the icon color when pressed
+                icon: const Icon(Icons.arrow_circle_down_rounded),
+                 onPressed: () {
+                  //change the icon color when pressed
                   var user = FirebaseAuth.instance.currentUser;
                     FireStoreMethods().DownvotePost(
                       widget.snap['postId'].toString(),

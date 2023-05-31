@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +100,9 @@ class _draftGeneralState extends State<draftGeneral> {
     'userId': user?.uid,
     'datePublished' : DateTime.now(),
     'postId': postId,
-    'upvotes': 0,
+    //set the value of 'upvotes' in firestore to an empty array
+    'upvotes': [],
+    'downvotes': [],
   });
   }
 }
