@@ -34,7 +34,8 @@ class _generalComplaintsState extends State<generalComplaints> {
         ),
       ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('complaints').snapshots(),
+        //order the complaints by date published
+        stream: FirebaseFirestore.instance.collection('complaints').orderBy('upvotes',descending: true).snapshots(),
         builder: (context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
