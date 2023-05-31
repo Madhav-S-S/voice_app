@@ -37,19 +37,15 @@ class _PostCardState extends State<PostCard> {
       constraints: const BoxConstraints(
         maxWidth: 700,
       ),
-      // margin: const EdgeInsets.symmetric(
-      //   vertical: 8,
-      //   horizontal: 16,
-      // ),
+      margin: const EdgeInsets.symmetric(
+        vertical: 8,
+        horizontal: 16,
+      ),
       //border color set
       decoration: BoxDecoration(
+        //make the border circular
         color: Colors.black54,
-        border: Border.symmetric(
-          horizontal: BorderSide(
-            color: Colors.grey,
-            width: 0.1,
-          ),
-        ),
+        borderRadius: BorderRadius.circular(20),
       ),
       padding: const EdgeInsets.symmetric(
         vertical: 10,
@@ -76,7 +72,7 @@ class _PostCardState extends State<PostCard> {
                         Text(
                           this.widget.snap['title'].toString(),
                           style: const TextStyle(
-                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins',
                             fontSize: 20,
                           ),
                         ),

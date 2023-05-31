@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:voice/reusable_widgets/post_card.dart';
 import 'package:voice/student/draft_general.dart';
 import 'package:voice/student/student_home.dart';
+import 'package:voice/utils/color_utils.dart';
 
 class generalComplaints extends StatefulWidget {
   const generalComplaints({Key? key}) : super(key: key);
@@ -37,24 +38,38 @@ class _generalComplaintsState extends State<generalComplaints> {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal,fontFamily: "Poppins"),
         ),
       ),
-      body: StreamBuilder(
-        //order the complaints by date published
-        stream: FirebaseFirestore.instance.collection('complaints').orderBy('upvotes',descending: true).snapshots(),
-        builder: (context,
-            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return ListView.builder(
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) => PostCard(
-              snap : snapshot.data!.docs[index].data(),
-            ),
-         
-          );
-        },
+      body: Container(
+        color:voiceBlue,
+        child: Container(
+          decoration: BoxDecoration(
+                //make border radius circular only at the top
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+                gradient: LinearGradient(colors: [
+              hexStringToColor("8a2be2"),
+              hexStringToColor("00308F"),
+              hexStringToColor("001C2E")
+            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          child: StreamBuilder(
+            //order the complaints by date published
+            stream: FirebaseFirestore.instance.collection('complaints').orderBy('upvotes',descending: true).snapshots(),
+            builder: (context,
+                AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) => PostCard(
+                  snap : snapshot.data!.docs[index].data(),
+                ),
+             
+              );
+            },
+          ),
+        ),
       ),
     );
   }
