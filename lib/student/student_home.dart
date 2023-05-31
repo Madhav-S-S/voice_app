@@ -21,8 +21,8 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
     return Scaffold(
       appBar: AppBar(
       backgroundColor: Color.fromRGBO(0, 28, 46, 1),
-
-
+      leading : null,
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text(
           "HOME",
