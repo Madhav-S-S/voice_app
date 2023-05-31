@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:voice/methods/firestore_methods.dart';
+import 'package:voice/reusable_widgets/reusable_widget.dart';
 class PostCard extends StatefulWidget {
     final snap;
   const PostCard({
@@ -18,6 +19,17 @@ class PostCard extends StatefulWidget {
 
 class _PostCardState extends State<PostCard> {
     final database = FirebaseFirestore.instance;
+     deletePost(String postId) async {
+    try {
+      await FireStoreMethods().deletePost(postId);
+    } catch (err) {
+      showSnackBar(
+        context,
+        err.toString(),
+      );
+    }
+  }
+  var user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -97,6 +109,10 @@ class _PostCardState extends State<PostCard> {
                                                 child: Text(e),
                                               ),
                                               onTap: () {
+                                                deletePost(
+                                                  widget.snap['postId']
+                                                      .toString(),
+                                                );
                                                 // remove the dialog box
                                                 Navigator.of(context).pop();
                                               }),
@@ -158,9 +174,7 @@ class _PostCardState extends State<PostCard> {
                 child: IconButton(
                   iconSize: 30.0,
                   //increase the size of the icon
-                    icon: Icon(Icons.arrow_circle_up_rounded,
-                    //if checkUpvoteStatus is true then the icon color is green else white
-                    color: checkUpvoteStatus() ? Colors.blue : Colors.white,
+                    icon: widget.snap['upvotes'].contains(user!.uid) ? Icon(Icons.arrow_circle_up_rounded, color: Colors.blue,) : Icon(Icons.arrow_circle_up_rounded, color: Colors.white,
                     ), 
                     onPressed: () {
                       // call the upvote function
@@ -178,11 +192,9 @@ class _PostCardState extends State<PostCard> {
                 child: IconButton(
               iconSize: 30.0,
               //change the icon color when pressed
-                icon: const Icon(Icons.arrow_circle_down_rounded),
-                  color: checkDownvoteStatus() ? Colors.red : Colors.white,
+                icon: widget.snap['downvotes'].contains(user!.uid) ? Icon(Icons.arrow_circle_down_rounded, color: Colors.red,) : Icon(Icons.arrow_circle_down_rounded, color: Colors.white,),
                  onPressed: () {
                   //change the icon color when pressed
-                  var user = FirebaseAuth.instance.currentUser;
                     FireStoreMethods().DownvotePost(
                       widget.snap['postId'].toString(),
                       user!.uid,
@@ -200,15 +212,6 @@ class _PostCardState extends State<PostCard> {
  bool checkUpvoteStatus(){
     var user = FirebaseAuth.instance.currentUser;
     if(widget.snap['upvotes'].contains(user!.uid)){
-      return true;
-    }
-    else{
-      return false;
-    }
-  }
-  bool checkDownvoteStatus(){
-    var user = FirebaseAuth.instance.currentUser;
-    if(widget.snap['downvotes'].contains(user!.uid)){
       return true;
     }
     else{
