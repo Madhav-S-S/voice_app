@@ -1,3 +1,4 @@
+import 'package:voice/faculty/faculty_general.dart';
 import 'package:voice/student/general_complaints.dart';
 import 'package:voice/student/open_complaints.dart';
 import 'package:voice/student/personal_complaints.dart';
@@ -56,7 +57,7 @@ class _facultyHomeScreenState extends State<facultyHomeScreen> {
                   GestureDetector(
                     onTap: (){
       
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>generalComplaints()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>facultyGeneral()));
                     },
                     child: Container(height:150,width:1000,
                         //make the container half transparent

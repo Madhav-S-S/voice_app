@@ -398,9 +398,11 @@ class _SignUpState extends State<SignUpScreen> {
     try{
     var user = _auth.currentUser;
     var branch = emailController.text.split('.')[1].split('@')[0];
-    print(branch);
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
+    if(role == "Student")
     ref.doc(user!.uid).set({'email': emailController.text, 'role': role,'uid':user.uid,'rollNo':rollNo,'branch':branch});
+    else
+    ref.doc(user!.uid).set({'email': emailController.text, 'role': role,'uid':user.uid});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
     }catch(e){
