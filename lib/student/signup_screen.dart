@@ -348,6 +348,7 @@ class _SignUpState extends State<SignUpScreen> {
                           elevation: 5.0,
                           height: 50,
                           onPressed: () {
+                            //split the string between '.' and '@' to get the branch
                             setState(() {
                               showProgress = true;
                             });
@@ -411,10 +412,11 @@ class _SignUpState extends State<SignUpScreen> {
 
   postDetailsToFirestore(String email, String role) async {
     try{
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     var user = _auth.currentUser;
+    var branch = email.split('.').last.split('@').first;
+    print(branch);
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
-    ref.doc(user!.uid).set({'email': emailController.text, 'role': role,'uid':user.uid,'rollNo':rollNo});
+    ref.doc(user!.uid).set({'email': emailController.text, 'role': role,'uid':user.uid,'rollNo':rollNo,'branch':branch});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
     }catch(e){
