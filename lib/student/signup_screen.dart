@@ -74,7 +74,7 @@ class _SignUpState extends State<SignUpScreen> {
                         Text(
                           "Register Now",
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins',
                             color: Colors.white,
                             fontSize: 40,
                           ),
@@ -91,6 +91,10 @@ class _SignUpState extends State<SignUpScreen> {
                             filled: true,
                             fillColor: Color(0x77ffffff),
                             hintText: 'SAINTGITS MAIL ID',
+                            hintStyle: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Colors.white38
+                            ),
                             enabled: true,
                             contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                             focusedBorder: OutlineInputBorder(
@@ -136,6 +140,10 @@ class _SignUpState extends State<SignUpScreen> {
                             filled: true,
                             fillColor: Color(0x77ffffff),
                             hintText: 'PASSWORD',
+                            hintStyle: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Colors.white38,
+                            ),
                             enabled: true,
                             contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                             focusedBorder: OutlineInputBorder(
@@ -179,6 +187,10 @@ class _SignUpState extends State<SignUpScreen> {
                             filled: true,
                             fillColor:Color(0x77ffffff),
                             hintText: 'CONFIRM PASSWORD',
+                            hintStyle: TextStyle(
+                              color: Colors.white38,
+                              fontFamily: 'Poppins',
+                            ),
                             enabled: true,
                             contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                             focusedBorder: OutlineInputBorder(
@@ -215,8 +227,24 @@ class _SignUpState extends State<SignUpScreen> {
                               ),
                             ),
                             Container(
+                              alignment: Alignment.center,
+                              width: 150,
+                              height: 50,
+                              decoration: BoxDecoration(
+                              //make the color of the container transparent
+                              color: Color(0x33FFFFFF),
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                spreadRadius: 1,
+                                blurRadius: 8,
+                                offset: Offset(4, 4),
+                                  )
+                                ]
+                              ),
                               child: DropdownButton<String>(
-                                dropdownColor: Colors.blue[900],
+                                dropdownColor: voiceBlue,
                                 isDense: true,
                                 isExpanded: false,
                                 iconEnabledColor: Colors.white,
@@ -228,7 +256,7 @@ class _SignUpState extends State<SignUpScreen> {
                                       dropDownStringItem,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Poppins',
                                         fontSize: 20,
                                       ),
                                     ),
@@ -257,37 +285,55 @@ class _SignUpState extends State<SignUpScreen> {
                                     "Roll Number : ",
                                     style: TextStyle(
                                       fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Poppins',
                                       color: Colors.white,
                                     ),
                                   ),
-                                  DropdownButton<String>(
-                                    dropdownColor: Colors.blue[900],
-                                    isDense: true,
-                                    isExpanded: false,
-                                    iconEnabledColor: Colors.white,
-                                    focusColor: Colors.white,
-                                    items: roll.map((String dropDownStringItem) {
-                                      return DropdownMenuItem<String>(
-                                        value: dropDownStringItem,
-                                        child: Text(
-                                          dropDownStringItem,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20,
+                                  Container(
+                                    alignment: Alignment.center,
+                                    width: 100,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      //make the color of the container transparent
+                                      color: Color(0x33FFFFFF),
+                                      borderRadius: BorderRadius.circular(15),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey,
+                                          spreadRadius: 1,
+                                          blurRadius: 8,
+                                          offset: Offset(4, 4),
+                                        )
+                                      ]
+                                    ),
+                                    child: DropdownButton<String>(
+                                      dropdownColor: voiceBlue,
+                                      isDense: true,
+                                      isExpanded: false,
+                                      iconEnabledColor: Colors.white,
+                                      focusColor: Colors.white,
+                                      items: roll.map((String dropDownStringItem) {
+                                        return DropdownMenuItem<String>(
+                                          value: dropDownStringItem,
+                                          child: Text(
+                                            dropDownStringItem,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'Poppins',
+                                              fontSize: 20,
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    }).toList(),
-                                    onChanged: (newValueSelected) {
-                                      setState(() {
-                                        _currentItemSelected2 =
-                                            newValueSelected!;
-                                        rollNo = newValueSelected;
-                                      });
-                                    },
-                                    value: _currentItemSelected2,
+                                        );
+                                      }).toList(),
+                                      onChanged: (newValueSelected) {
+                                        setState(() {
+                                          _currentItemSelected2 =
+                                              newValueSelected!;
+                                          rollNo = newValueSelected;
+                                        });
+                                      },
+                                      value: _currentItemSelected2,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -368,7 +414,7 @@ class _SignUpState extends State<SignUpScreen> {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     var user = _auth.currentUser;
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
-    ref.doc(user!.uid).set({'email': emailController.text, 'role': role,'uid':user.uid});
+    ref.doc(user!.uid).set({'email': emailController.text, 'role': role,'uid':user.uid,'rollNo':rollNo});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
     }catch(e){
