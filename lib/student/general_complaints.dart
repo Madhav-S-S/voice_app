@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/reusable_widgets/post_card.dart';
 import 'package:voice/student/draft_general.dart';
+import 'package:voice/student/student_home.dart';
 
 class generalComplaints extends StatefulWidget {
   const generalComplaints({Key? key}) : super(key: key);
@@ -15,6 +16,9 @@ class _generalComplaintsState extends State<generalComplaints> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+            leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>studentHomeScreen()))),
         //add an icon to right side of appbar
         actions: [
           IconButton(
