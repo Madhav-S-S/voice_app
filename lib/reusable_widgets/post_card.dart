@@ -31,7 +31,7 @@ class _PostCardState extends State<PostCard> {
       // ),
       //border color set
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: Colors.black54,
         border: Border.symmetric(
           horizontal: BorderSide(
             color: Colors.grey,
