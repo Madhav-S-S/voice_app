@@ -43,7 +43,7 @@ class _SignUpState extends State<SignUpScreen> {
   var role = "Student";
   var _currentItemSelected2 = "1";
   var rollNo = "1";
-
+  var _isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -340,13 +340,16 @@ class _SignUpState extends State<SignUpScreen> {
                                 passwordController.text, 
                                 role);
                           },
-                          child: Text(
+                          child: !_isLoading?
+                          Text(
                             "Register",
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.black,
                             ),
-                          ),
+                          ):const CircularProgressIndicator(
+                          color: Colors.blue
+                        ),
                           color: Colors.white,
                         ),
                         SizedBox(
@@ -385,7 +388,9 @@ class _SignUpState extends State<SignUpScreen> {
   }
 
   void signUp(String email, String password, String role) async {
-    CircularProgressIndicator();
+    setState(() {
+      _isLoading = true;
+    });
     if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
