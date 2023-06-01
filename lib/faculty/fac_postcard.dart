@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -170,10 +172,50 @@ class _facultyPostCardState extends State<facultyPostCard> {
                   child: Align(
                 alignment: Alignment.bottomRight,
               )),
+              //show an icon button for faculties to update the status of the complaint
+              IconButton(onPressed: (){
+                showDialog(context: context, builder: (context){
+                  return Dialog(
+                    backgroundColor: Colors.transparent,
+                   child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          //make the border circular
+                          //make background blur of the container          
+                          color: Colors.black54.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        height: 500,
+                        width: 300,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20,),
+                            //increase the size of the update status text
+                            Text('Update Status', style: TextStyle(fontSize: 20,fontFamily: 'Poppins'),),
+                            SizedBox(height: 20,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(onPressed: (){}, child: Text('Resolved')),
+                                ElevatedButton(onPressed: (){}, child: Text('Not Resolved')),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                });
+              },
+               icon: const Icon(Icons.update),
+               iconSize: 30,
+               ),
               Text('${widget.snap['upvotes'].length - widget.snap['downvotes'].length} Votes',),
               Align(
                 alignment: Alignment.bottomRight,
-              )
+              ),
+              SizedBox(width: 15),
             ],
           ),
           //date published of the post
