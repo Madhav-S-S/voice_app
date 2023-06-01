@@ -107,6 +107,7 @@ class _draftGeneralState extends State<draftGeneral> {
     'upvotes': [],
     'downvotes': [],
     'branch': branch,
+    'status': [],
   });
   }
 }

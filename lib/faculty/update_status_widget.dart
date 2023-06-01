@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 updateStatusWidget(){
+  var _statusController = TextEditingController();
   return Dialog(
                     backgroundColor: Colors.transparent,
                    child: BackdropFilter(
@@ -25,7 +26,7 @@ updateStatusWidget(){
                              Padding(
                                padding: const EdgeInsets.only(left: 20,),
                                child: TextField(
-                                  controller: null,
+                                  controller: _statusController,
                                   maxLines: null,
                                   decoration: InputDecoration(
                                       //set the color of of the field as white
