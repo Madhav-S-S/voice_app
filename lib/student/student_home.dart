@@ -4,9 +4,7 @@ import 'package:voice/student/personal_complaints.dart';
 import 'package:voice/student/student_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:voice/utils/color_utils.dart';
-import 'package:voice/core/utils/image_constant.dart';
 
 class studentHomeScreen extends StatefulWidget {
   const studentHomeScreen({Key? key}) : super(key: key);

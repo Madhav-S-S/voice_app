@@ -1,13 +1,10 @@
 import 'package:voice/faculty/faculty_general.dart';
-import 'package:voice/student/general_complaints.dart';
 import 'package:voice/student/open_complaints.dart';
 import 'package:voice/student/personal_complaints.dart';
 import 'package:voice/student/student_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:voice/utils/color_utils.dart';
-import 'package:voice/core/utils/image_constant.dart';
 
 class facultyHomeScreen extends StatefulWidget {
   const facultyHomeScreen({Key? key}) : super(key: key);

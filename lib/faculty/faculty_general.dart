@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/faculty/fac_postcard.dart';
-import 'package:voice/reusable_widgets/post_card.dart';
 import 'package:voice/student/draft_general.dart';
 import 'package:voice/student/student_home.dart';
 import 'package:voice/utils/color_utils.dart';

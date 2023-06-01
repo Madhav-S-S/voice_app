@@ -1,7 +1,5 @@
 //1.update status
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
 void updateStatus(String status) {
   //get the complaint id from the url
