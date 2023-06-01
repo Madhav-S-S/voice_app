@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:voice/faculty/update_status_widget.dart';
 import 'package:voice/methods/firestore_methods.dart';
 import 'package:voice/reusable_widgets/reusable_widget.dart';
 class facultyPostCard extends StatefulWidget {
@@ -175,37 +176,7 @@ class _facultyPostCardState extends State<facultyPostCard> {
               //show an icon button for faculties to update the status of the complaint
               IconButton(onPressed: (){
                 showDialog(context: context, builder: (context){
-                  return Dialog(
-                    backgroundColor: Colors.transparent,
-                   child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          //make the border circular
-                          //make background blur of the container          
-                          color: Colors.black54.withOpacity(0.8),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        height: 500,
-                        width: 300,
-                        child: Column(
-                          children: [
-                            SizedBox(height: 20,),
-                            //increase the size of the update status text
-                            Text('Update Status', style: TextStyle(fontSize: 20,fontFamily: 'Poppins'),),
-                            SizedBox(height: 20,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ElevatedButton(onPressed: (){}, child: Text('Resolved')),
-                                ElevatedButton(onPressed: (){}, child: Text('Not Resolved')),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
+                  return updateStatusWidget();
                 });
               },
                icon: const Icon(Icons.update),
