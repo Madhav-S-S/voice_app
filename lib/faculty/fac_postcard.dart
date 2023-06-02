@@ -1,22 +1,25 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:voice/methods/firestore_methods.dart';
 import 'package:voice/reusable_widgets/reusable_widget.dart';
-class PostCard extends StatefulWidget {
+import 'package:voice/utils/color_utils.dart';
+class facultyPostCard extends StatefulWidget {
     final snap;
-  const PostCard({
+  const facultyPostCard({
     Key? key,
     required this.snap,
   }) : super(key: key);
     
 
   @override
-  State<PostCard> createState() => _PostCardState();
+  State<facultyPostCard> createState() => _facultyPostCardState();
 }
 
-class _PostCardState extends State<PostCard> {
+class _facultyPostCardState extends State<facultyPostCard> {
     final database = FirebaseFirestore.instance;
      deletePost(String postId) async {
     try {
@@ -168,37 +171,108 @@ class _PostCardState extends State<PostCard> {
                   Expanded(
                   child: Align(
                 alignment: Alignment.bottomRight,
-                child: IconButton(
-                  iconSize: 30.0,
-                  //increase the size of the icon
-                    icon: widget.snap['upvotes'].contains(user!.uid) ? Icon(Icons.arrow_circle_up_rounded, color: Colors.blue,) : Icon(Icons.arrow_circle_up_rounded, color: Colors.white,
-                    ), 
-                    onPressed: () {
-                      // call the upvote function
-                      var user = FirebaseAuth.instance.currentUser;
-                      FireStoreMethods().UpvotePost(
-                        widget.snap['postId'].toString(),
-                        user!.uid,
-                        widget.snap['upvotes'],
-                      );
-                    }),
               )),
+              //show an icon button for faculties to update the status of the complaint
+              IconButton(onPressed: (){
+                showDialog(context: context, builder: (context){
+                  var _statusController = TextEditingController();
+                  return Dialog(
+                    backgroundColor: Colors.transparent,
+                   child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                      child: SingleChildScrollView(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            //make the border circular
+                            //make background blur of the container          
+                            color: Colors.black54.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          height: 500,
+                          width: 300,
+                          child: Column(
+                            children: [
+                              SizedBox(height: 20,),
+                              //increase the size of the update status text
+                              Text('Update Status', style: TextStyle(fontSize: 20,fontFamily: 'Poppins'),),
+                              SizedBox(height: 20,),
+                               Padding(
+                                 padding: const EdgeInsets.only(left: 20,),
+                                 child: TextField(
+                                    controller: _statusController,
+                                    maxLines: null,
+                                    decoration: InputDecoration(
+                                        //set the color of of the field as white
+                                        filled: true,
+                                        fillColor: Colors.white.withOpacity(0.1),
+                                        icon:Icon(Icons.update),
+                                        hintText: "Update Status here",
+                                        hintStyle: TextStyle(color: Colors.grey),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(20),
+                                          borderSide: BorderSide.none,
+                                        )
+                                    ),
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                               ),
+                                SizedBox(height: 10,),
+                               //create a icon button to submit the status
+                                Align(
+                                  widthFactor: 3,
+                                  alignment: Alignment.topRight,
+                                  child: TextButton(
+                                    //set background color of the button as voiceBlue
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: voiceBlue,
+                                    ),
+                                    onPressed: (){
+                                        var postId = widget.snap['postId'].toString();
+                                        FirebaseFirestore.instance.collection('complaints').doc(postId).update({
+                                          'status': FieldValue.arrayUnion([_statusController.text])
+                                        });
+                                    },
+                                    child: Text('SUBMIT',style: TextStyle(color: Colors.white),),
+                                  ),
+                                ),
+                               ListView(
+                                 shrinkWrap: true,
+                                 children: [
+                                   ListTile(
+                                     title: Text('Complaint ID:'),
+                                     subtitle: Text('123456789'),
+                                   ),
+                                   ListTile(
+                                     title: Text('Complaint Type:'),
+                                     subtitle: Text('General'),
+                                   ),
+                                   ListTile(
+                                     title: Text('Complaint Description:'),
+                                     subtitle: Text('This is a general complaint'),
+                                   ),
+                                   ListTile(
+                                     title: Text('Complaint Status:'),
+                                     subtitle: Text('Open'),
+                                   ),
+                                 ],
+                               ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+}
+                );
+              },
+               icon: const Icon(Icons.update),
+               iconSize: 30,
+               ),
               Text('${widget.snap['upvotes'].length - widget.snap['downvotes'].length} Votes',),
               Align(
                 alignment: Alignment.bottomRight,
-                child: IconButton(
-              iconSize: 30.0,
-              //change the icon color when pressed
-                icon: widget.snap['downvotes'].contains(user!.uid) ? Icon(Icons.arrow_circle_down_rounded, color: Colors.red,) : Icon(Icons.arrow_circle_down_rounded, color: Colors.white,),
-                 onPressed: () {
-                  //change the icon color when pressed
-                    FireStoreMethods().DownvotePost(
-                      widget.snap['postId'].toString(),
-                      user!.uid,
-                      widget.snap['downvotes'],
-                    );
-                }),
-              )
+              ),
+              SizedBox(width: 15),
             ],
           ),
           //date published of the post

@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+showSnackBar(BuildContext context, String text) {
+  return ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(text),
+    ),
+  );
+}
 
 Image logoWidget(String imageName) {
   return Image.asset(

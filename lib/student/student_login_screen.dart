@@ -8,7 +8,6 @@ import 'package:voice/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/core/utils/image_constant.dart';
 //keep user logged in even after closing the app
-import 'package:shared_preferences/shared_preferences.dart';
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -66,7 +65,9 @@ class _LoginPageState extends State<LoginPage> {
                         filled: true,
                         fillColor: Color(0x77ffffff),
                         hintText: 'SAINTGITS MAIL ID',
-                         hintStyle: TextStyle(color: Colors.white38),
+                         hintStyle: TextStyle(
+                          fontFamily: "Poppins",
+                          color: Colors.white38),
                         enabled: true,
                         contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         focusedBorder: OutlineInputBorder(
@@ -113,7 +114,9 @@ class _LoginPageState extends State<LoginPage> {
                         filled: true,
                         fillColor: Color(0x77ffffff),
                         hintText: 'PASSWORD',
-                        hintStyle: TextStyle(color: Colors.white38),
+                        hintStyle: TextStyle(
+                          fontFamily: "Poppins",
+                          color: Colors.white38),
                         enabled: true,
                         contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                         focusedBorder: OutlineInputBorder(

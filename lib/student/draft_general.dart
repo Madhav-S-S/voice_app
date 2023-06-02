@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -27,25 +28,30 @@ class _draftGeneralState extends State<draftGeneral> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
         ),
         centerTitle: false,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         title: const Text(
           "New Complaint",
-          style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold, fontSize: 20),
+          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold, fontSize: 20),
         ),
         actions: [
           TextButton(onPressed: (){
-            addComplaintToFirestore(_titleController.text, _descriptionController.text);
+            if(_titleController.text.length ==0 || _descriptionController.text.length ==0){
+              print("Title Required");
+            }
+            else{
+                addComplaintToFirestore(_titleController.text, _descriptionController.text);
             Navigator.push(context, MaterialPageRoute(builder: (context)=>generalComplaints()));
+            }
           },
            child: const Text("Post",style: TextStyle(color: Colors.blueAccent,fontWeight: FontWeight.bold, fontSize: 16),))
         ],
       ),
       body:Container(
         //change color of the container
-        color: Colors.white,
+        color: Colors.black,
         child: Column(
           children: [
             Padding(
@@ -85,11 +91,20 @@ class _draftGeneralState extends State<draftGeneral> {
   addComplaintToFirestore(String title,String description) async {
     var user = _auth.currentUser;
     String postId = Uuid().v4();
+    //get branch attribute from the current user from firestore
+    String branch = (await FirebaseFirestore.instance.collection('users').doc(user?.uid).get()).get('branch');
     DocumentReference docRef = FirebaseFirestore.instance.collection('complaints').doc(postId);
     docRef.set({
     'title': title,
     'description': description,
     'userId': user?.uid,
+    'datePublished' : DateTime.now(),
+    'postId': postId,
+    //set the value of 'upvotes' in firestore to an empty array
+    'upvotes': [],
+    'downvotes': [],
+    'branch': branch,
+    'status': [],
   });
   }
 }
