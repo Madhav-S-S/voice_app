@@ -395,6 +395,7 @@ class _SignUpState extends State<SignUpScreen> {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {postDetailsToFirestore(email, role)})
+          // ignore: body_might_complete_normally_catch_error
           .catchError((e) {});
     }
   }
