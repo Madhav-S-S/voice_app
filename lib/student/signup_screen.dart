@@ -7,7 +7,6 @@ import 'package:voice/utils/color_utils.dart';
 //import 'login.dart';
 // import 'model.dart';
 
-
 class SignUpScreen extends StatefulWidget {
   @override
   _SignUpState createState() => _SignUpState();
@@ -31,19 +30,157 @@ class _SignUpState extends State<SignUpScreen> {
   bool _isObscure = true;
   bool _isObscure2 = true;
   File? file;
-  var roll = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','18','19','20','21','22','23','24','25','26','27','28','29','30','31',
-  '32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62',
-  '63','64','65','66','67','68','69','70','71','72','73','74','75','76','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93',
-  '94','95','96','97','98','99','100','101','102','103','104','105','106','108','109','110','111','112','113','114','115','116','117','118','119','120'];
+  var roll = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '18',
+    '19',
+    '20',
+    '21',
+    '22',
+    '23',
+    '24',
+    '25',
+    '26',
+    '27',
+    '28',
+    '29',
+    '30',
+    '31',
+    '32',
+    '33',
+    '34',
+    '35',
+    '36',
+    '37',
+    '38',
+    '39',
+    '40',
+    '41',
+    '42',
+    '43',
+    '44',
+    '45',
+    '46',
+    '48',
+    '49',
+    '50',
+    '51',
+    '52',
+    '53',
+    '54',
+    '55',
+    '56',
+    '57',
+    '58',
+    '59',
+    '60',
+    '61',
+    '62',
+    '63',
+    '64',
+    '65',
+    '66',
+    '67',
+    '68',
+    '69',
+    '70',
+    '71',
+    '72',
+    '73',
+    '74',
+    '75',
+    '76',
+    '78',
+    '79',
+    '80',
+    '81',
+    '82',
+    '83',
+    '84',
+    '85',
+    '86',
+    '87',
+    '88',
+    '89',
+    '90',
+    '91',
+    '92',
+    '93',
+    '94',
+    '95',
+    '96',
+    '97',
+    '98',
+    '99',
+    '100',
+    '101',
+    '102',
+    '103',
+    '104',
+    '105',
+    '106',
+    '108',
+    '109',
+    '110',
+    '111',
+    '112',
+    '113',
+    '114',
+    '115',
+    '116',
+    '117',
+    '118',
+    '119',
+    '120'
+  ];
   var options = [
     'Student',
     'Teacher',
+  ];
+  var _class = [
+    "csb2023",
+    "csa2023",
+    "csb2024",
+    "csa2024",
+    "csb2025",
+    "csa2025",
+    "csb2026",
+    "csa2025",
+    "ec2023",
+    "ec2024",
+    "ec2025",
+    "ec2026",
+    "mea2023",
+    "meb2023",
+    "mea2024",
+    "meb2024",
+    "mea2025",
+    "meb2025",
+    "mea2026",
+    "meb2026",
   ];
   var _currentItemSelected = "Student";
   var role = "Student";
   var _currentItemSelected2 = "1";
   var rollNo = "1";
+  var _currentItemSelected3 = "csb2024";
   var _isLoading = false;
+  var branch;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,11 +191,11 @@ class _SignUpState extends State<SignUpScreen> {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-          hexStringToColor("00308F"),
-          hexStringToColor("9546C4"),
-          hexStringToColor("001C2E")
-        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+                  gradient: LinearGradient(colors: [
+                hexStringToColor("00308F"),
+                hexStringToColor("9546C4"),
+                hexStringToColor("001C2E")
+              ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
               child: SingleChildScrollView(
                 child: Container(
                   margin: EdgeInsets.all(12),
@@ -92,11 +229,10 @@ class _SignUpState extends State<SignUpScreen> {
                             fillColor: Color(0x77ffffff),
                             hintText: 'SAINTGITS MAIL ID',
                             hintStyle: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: Colors.white38
-                            ),
+                                fontFamily: 'Poppins', color: Colors.white38),
                             enabled: true,
-                            contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 20.0, horizontal: 10.0),
                             focusedBorder: OutlineInputBorder(
                               borderSide: new BorderSide(color: Colors.white),
                               borderRadius: new BorderRadius.circular(20),
@@ -145,7 +281,8 @@ class _SignUpState extends State<SignUpScreen> {
                               color: Colors.white38,
                             ),
                             enabled: true,
-                            contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 20.0, horizontal: 10.0),
                             focusedBorder: OutlineInputBorder(
                               borderSide: new BorderSide(color: Colors.white),
                               borderRadius: new BorderRadius.circular(20),
@@ -185,14 +322,15 @@ class _SignUpState extends State<SignUpScreen> {
                                   });
                                 }),
                             filled: true,
-                            fillColor:Color(0x77ffffff),
+                            fillColor: Color(0x77ffffff),
                             hintText: 'CONFIRM PASSWORD',
                             hintStyle: TextStyle(
                               color: Colors.white38,
                               fontFamily: 'Poppins',
                             ),
                             enabled: true,
-                            contentPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 20.0, horizontal: 10.0),
                             focusedBorder: OutlineInputBorder(
                               borderSide: new BorderSide(color: Colors.white),
                               borderRadius: new BorderRadius.circular(20),
@@ -221,19 +359,18 @@ class _SignUpState extends State<SignUpScreen> {
                             Text(
                               "Role : ",
                               style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontFamily: 'Poppins'
-                              ),
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontFamily: 'Poppins'),
                             ),
                             Container(
                               alignment: Alignment.center,
                               width: 150,
                               height: 50,
                               decoration: BoxDecoration(
-                              //make the color of the container transparent
-                              color: Color(0x33FFFFFF),
-                              borderRadius: BorderRadius.circular(15),
+                                //make the color of the container transparent
+                                color: Color(0x33FFFFFF),
+                                borderRadius: BorderRadius.circular(15),
                               ),
                               child: DropdownButton<String>(
                                 dropdownColor: voiceBlue,
@@ -270,62 +407,114 @@ class _SignUpState extends State<SignUpScreen> {
                           height: 20,
                         ),
                         if (_currentItemSelected == "Student")
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Roll Number : ",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: 'Poppins',
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    width: 100,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      //make the color of the container transparent
-                                      color: Color(0x33FFFFFF),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    child: DropdownButton<String>(
-                                      dropdownColor: voiceBlue,
-                                      isDense: true,
-                                      isExpanded: false,
-                                      iconEnabledColor: Colors.white,
-                                      focusColor: Colors.white,
-                                      items: roll.map((String dropDownStringItem) {
-                                        return DropdownMenuItem<String>(
-                                          value: dropDownStringItem,
-                                          child: Text(
-                                            dropDownStringItem,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: 'Poppins',
-                                              fontSize: 20,
-                                            ),
-                                          ),
-                                        );
-                                      }).toList(),
-                                      onChanged: (newValueSelected) {
-                                        setState(() {
-                                          _currentItemSelected2 =
-                                              newValueSelected!;
-                                          rollNo = newValueSelected;
-                                        });
-                                      },
-                                      value: _currentItemSelected2,
-                                    ),
-                                  ),
-                                ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Roll Number : ",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                ),
                               ),
-                              SizedBox(
+                              Container(
+                                alignment: Alignment.center,
+                                width: 100,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  //make the color of the container transparent
+                                  color: Color(0x33FFFFFF),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: DropdownButton<String>(
+                                  dropdownColor: voiceBlue,
+                                  isDense: true,
+                                  isExpanded: false,
+                                  iconEnabledColor: Colors.white,
+                                  focusColor: Colors.white,
+                                  items: roll.map((String dropDownStringItem) {
+                                    return DropdownMenuItem<String>(
+                                      value: dropDownStringItem,
+                                      child: Text(
+                                        dropDownStringItem,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'Poppins',
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (newValueSelected) {
+                                    setState(() {
+                                      _currentItemSelected2 = newValueSelected!;
+                                      rollNo = newValueSelected;
+                                    });
+                                  },
+                                  value: _currentItemSelected2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Class : ",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'Poppins',
+                                color: Colors.white,
+                              ),
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              width: 150,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                //make the color of the container transparent
+                                color: Color(0x33FFFFFF),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: DropdownButton<String>(
+                                dropdownColor: voiceBlue,
+                                isDense: true,
+                                isExpanded: false,
+                                iconEnabledColor: Colors.white,
+                                focusColor: Colors.white,
+                                items: _class.map((String dropDownStringItem) {
+                                  return DropdownMenuItem<String>(
+                                    value: dropDownStringItem,
+                                    child: Text(
+                                      dropDownStringItem,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Poppins',
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (newValueSelected) {
+                                  setState(() {
+                                    _currentItemSelected3 = newValueSelected!;
+                                    branch = newValueSelected;
+                                  });
+                                },
+                                value: _currentItemSelected3,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
                           height: 20,
                         ),
                         MaterialButton(
-                          minWidth: MediaQuery.of(context).size.width-100,
+                          minWidth: MediaQuery.of(context).size.width - 100,
                           shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20.0))),
@@ -337,41 +526,45 @@ class _SignUpState extends State<SignUpScreen> {
                               //split the string between '.' and '@' to get the branch
                             });
                             signUp(emailController.text,
-                                passwordController.text, 
-                                role);
+                                passwordController.text, role);
                           },
-                          child: !_isLoading?
-                          Text(
-                            "Register",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                            ),
-                          ):const CircularProgressIndicator(
-                          color: Colors.blue
-                        ),
+                          child: !_isLoading
+                              ? Text(
+                                  "Register",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
+                                )
+                              : const CircularProgressIndicator(
+                                  color: Colors.blue),
                           color: Colors.white,
                         ),
                         SizedBox(
                           height: 20,
                         ),
                         Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text("Already have an account?",
-                              style: TextStyle(color: Colors.white70,fontSize: 15)),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => LoginPage()));
-                            },
-                            child: const Text(
-                              " Login",
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        ],
-                      ),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text("Already have an account?",
+                                style: TextStyle(
+                                    color: Colors.white70, fontSize: 15)),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginPage()));
+                              },
+                              child: const Text(
+                                " Login",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        ),
                         SizedBox(
                           height: 20,
                         ),
@@ -401,17 +594,25 @@ class _SignUpState extends State<SignUpScreen> {
   }
 
   postDetailsToFirestore(String email, String role) async {
-    try{
-    var user = _auth.currentUser;
-    var branch = emailController.text.split('.')[1].split('@')[0];
-    CollectionReference ref = FirebaseFirestore.instance.collection('users');
-    if(role == "Student")
-    ref.doc(user!.uid).set({'email': emailController.text, 'role': role,'uid':user.uid,'rollNo':rollNo,'branch':branch});
-    else
-    ref.doc(user!.uid).set({'email': emailController.text, 'role': role,'uid':user.uid});
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => LoginPage()));
-    }catch(e){
+    try {
+      var user = _auth.currentUser;
+      CollectionReference ref = FirebaseFirestore.instance.collection('users');
+      if (role == "Student") {
+        var branch = emailController.text.split('.')[1].split('@')[0];
+        ref.doc(user!.uid).set({
+          'email': emailController.text,
+          'role': role,
+          'uid': user.uid,
+          'rollNo': rollNo,
+          'branch': branch
+        });
+      } else {
+        ref.doc(user!.uid).set(
+            {'email': emailController.text, 'role': role, 'uid': user.uid,'branch':branch});
+      }
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => LoginPage()));
+    } catch (e) {
       print(e);
     }
   }
