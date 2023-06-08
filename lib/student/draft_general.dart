@@ -37,7 +37,7 @@ class _draftGeneralState extends State<draftGeneral> {
           centerTitle: false,
           backgroundColor: Colors.black,
           title: const Text(
-            "New Complaint",
+            "New Complaint (general)",
             style: TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
           ),
