@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:voice/student/student_login_screen.dart';
+import 'package:voice/login.dart';
 import 'package:voice/utils/color_utils.dart';
 //import 'login.dart';
 // import 'model.dart';
@@ -206,7 +206,7 @@ class _SignUpState extends State<SignUpScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 80,
+                          height: 40,
                         ),
                         Text(
                           "Register Now",
@@ -217,10 +217,7 @@ class _SignUpState extends State<SignUpScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          height: 50,
+                          height: 40,
                         ),
                         TextFormField(
                           controller: emailController,

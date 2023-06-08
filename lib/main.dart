@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:voice/faculty/faculty_home.dart';
 import 'package:voice/student/student_home.dart';
-import 'package:voice/student/student_login_screen.dart';
+import 'package:voice/login.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/utils/color_utils.dart';
 import 'package:page_transition/page_transition.dart';//test modification for showing git push
