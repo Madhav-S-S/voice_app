@@ -13,6 +13,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUpScreen> {
+
   _SignUpState();
 
   bool showProgress = false;
@@ -22,6 +23,8 @@ class _SignUpState extends State<SignUpScreen> {
   final _auth = FirebaseAuth.instance;
 
   final TextEditingController passwordController = new TextEditingController();
+  final TextEditingController advisorController =
+      new TextEditingController();
   final TextEditingController confirmpassController =
       new TextEditingController();
   final TextEditingController name = new TextEditingController();
@@ -206,7 +209,7 @@ class _SignUpState extends State<SignUpScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 40,
+                          height: 30,
                         ),
                         Text(
                           "Register Now",
@@ -217,7 +220,7 @@ class _SignUpState extends State<SignUpScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 40,
+                          height: 30,
                         ),
                         TextFormField(
                           controller: emailController,
@@ -346,6 +349,45 @@ class _SignUpState extends State<SignUpScreen> {
                             }
                           },
                           onChanged: (value) {},
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        if(_currentItemSelected == 'STUDENT')
+                        TextFormField(
+                          controller: advisorController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Color(0x77ffffff),
+                            hintText: 'ADVISOR MAIL ID',
+                            hintStyle: TextStyle(
+                                fontFamily: 'Poppins', color: Colors.white38),
+                            enabled: true,
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 20.0, horizontal: 10.0),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: new BorderSide(color: Colors.white),
+                              borderRadius: new BorderRadius.circular(20),
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(color: Colors.white),
+                              borderRadius: new BorderRadius.circular(20),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value!.length == 0) {
+                              return "Email cannot be empty";
+                            }
+                            if (!RegExp(
+                                    "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                .hasMatch(value)) {
+                              return ("Please enter a valid email");
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (value) {},
+                          keyboardType: TextInputType.emailAddress,
                         ),
                         SizedBox(
                           height: 20,
@@ -601,7 +643,8 @@ class _SignUpState extends State<SignUpScreen> {
           'role': role,
           'uid': user.uid,
           'rollNo': rollNo,
-          'branch': branch
+          'branch': branch,
+          'advisor': advisorController.text,
         });
       } else {
         ref.doc(user!.uid).set(
