@@ -6,17 +6,17 @@ import 'package:uuid/uuid.dart';
 class FireStoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<String> UpvotePost(String postId, String uid, List upvotes) async {
+  Future<String> UpvotePost(String postId, String uid, List upvotes,String type) async {
     String res = "Some error occurred";
     try {
       if (upvotes.contains(uid)) {
         // if the likes list contains the user uid, we need to remove it
-        _firestore.collection('complaints').doc(postId).update({
+        _firestore.collection(type).doc(postId).update({
           'upvotes': FieldValue.arrayRemove([uid])
         });
       } else {
         // else we need to add uid to the likes array
-        _firestore.collection('complaints').doc(postId).update({
+        _firestore.collection(type).doc(postId).update({
           'upvotes': FieldValue.arrayUnion([uid])
         });
       }
@@ -26,17 +26,17 @@ class FireStoreMethods {
     }
     return res;
   }
-   Future<String> DownvotePost(String postId, String uid, List downvotes) async {
+   Future<String> DownvotePost(String postId, String uid, List downvotes,String type) async {
     String res = "Some error occurred";
     try {
       if (downvotes.contains(uid)) {
         // if the likes list contains the user uid, we need to remove it
-        _firestore.collection('complaints').doc(postId).update({
+        _firestore.collection(type).doc(postId).update({
           'downvotes': FieldValue.arrayRemove([uid])
         });
       } else {
         // else we need to add uid to the likes array
-        _firestore.collection('complaints').doc(postId).update({
+        _firestore.collection(type).doc(postId).update({
           'downvotes': FieldValue.arrayUnion([uid])
         });
       }

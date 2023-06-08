@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:voice/reusable_widgets/post_card.dart';
+import 'package:voice/reusable_widgets/gen_stud_postcard.dart';
 import 'package:voice/student/draft_general.dart';
 import 'package:voice/student/student_home.dart';
 import 'package:voice/utils/color_utils.dart';
@@ -52,7 +52,7 @@ class _generalComplaintsState extends State<generalComplaints> {
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: StreamBuilder(
             //order the complaints by date published
-            stream: FirebaseFirestore.instance.collection('complaints').orderBy('upvotes',descending: true).snapshots(),
+            stream: FirebaseFirestore.instance.collection('gen_complaints').orderBy('upvotes',descending: true).snapshots(),
             builder: (context,
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {

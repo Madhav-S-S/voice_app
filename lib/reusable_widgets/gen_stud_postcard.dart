@@ -181,6 +181,7 @@ class _PostCardState extends State<PostCard> {
                         widget.snap['postId'].toString(),
                         user!.uid,
                         widget.snap['upvotes'],
+                        widget.snap['type'],
                       );
                     }),
               )),
@@ -197,6 +198,7 @@ class _PostCardState extends State<PostCard> {
                       widget.snap['postId'].toString(),
                       user!.uid,
                       widget.snap['downvotes'],
+                      widget.snap['type'],
                     );
                 }),
               )
