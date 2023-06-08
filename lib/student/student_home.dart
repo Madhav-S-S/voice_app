@@ -20,6 +20,8 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        //create a dashboard app bar
+        
       backgroundColor: Color.fromRGBO(0, 28, 46, 1),
       leading : null,
         automaticallyImplyLeading: false,
