@@ -25,7 +25,7 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
         automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text(
-          "HOME",
+          "STUDENT HOME",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal,fontFamily: "Poppins"),
         ),
       ),

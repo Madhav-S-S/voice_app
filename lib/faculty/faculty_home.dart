@@ -1,4 +1,5 @@
 import 'package:voice/faculty/faculty_general.dart';
+import 'package:voice/faculty/faculty_open.dart';
 import 'package:voice/student/general_complaints.dart';
 import 'package:voice/student/open_complaints.dart';
 import 'package:voice/student/personal_complaints.dart';
@@ -26,7 +27,7 @@ class _facultyHomeScreenState extends State<facultyHomeScreen> {
         automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text(
-          "HOME",
+          "FACULTY HOME",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal,fontFamily: "Poppins"),
         ),
       ),
@@ -77,7 +78,7 @@ class _facultyHomeScreenState extends State<facultyHomeScreen> {
                   SizedBox(height: 30,),
                   GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>openComplaints()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>facultyGeneral()));
                     },
                     child: Container(height:150,width:1000,
                         child: Center(
@@ -95,7 +96,7 @@ class _facultyHomeScreenState extends State<facultyHomeScreen> {
                   SizedBox(height: 30),
                   GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>personalComplaints()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>facultyOpen()));
                     },
                     child: Container(height:150,width:1000,
                         child: Center(

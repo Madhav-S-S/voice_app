@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:voice/faculty/fac_postcard.dart';
+import 'package:voice/faculty/faculty_home.dart';
 import 'package:voice/methods/firestore_methods.dart';
 import 'package:voice/reusable_widgets/gen_stud_postcard.dart';
 import 'package:voice/student/draft_general.dart';
@@ -8,14 +10,14 @@ import 'package:voice/student/draft_open.dart';
 import 'package:voice/student/student_home.dart';
 import 'package:voice/utils/color_utils.dart';
 
-class openComplaints extends StatefulWidget {
-  const openComplaints({Key? key}) : super(key: key);
+class facultyOpen extends StatefulWidget {
+  const facultyOpen({Key? key}) : super(key: key);
 
   @override
-  _openComplaintsState createState() => _openComplaintsState();
+  _facultyOpenState createState() => _facultyOpenState();
 }
 
-class _openComplaintsState extends State<openComplaints> {
+class _facultyOpenState extends State<facultyOpen> {
   var branch2;
 
   @override
@@ -31,19 +33,8 @@ class _openComplaintsState extends State<openComplaints> {
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => studentHomeScreen()))),
+                MaterialPageRoute(builder: (context) => facultyHomeScreen()))),
         //add an icon to right side of appbar
-        actions: [
-          IconButton(
-            //on pressed function to navigate to the draft page of general complaints
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => draftOpen()));
-            },
-            //icon for a pen to write a new complaint
-            icon: Icon(Icons.create_outlined),
-          ),
-        ],
         backgroundColor: Color.fromRGBO(0, 28, 46, 1),
         centerTitle: true,
         title: const Text(
@@ -83,7 +74,7 @@ class _openComplaintsState extends State<openComplaints> {
               }
               return ListView.builder(
                 itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) => PostCard(
+                itemBuilder: (context, index) => facultyPostCard(
                   snap: snapshot.data!.docs[index].data(),
                 ),
               );

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/faculty/fac_postcard.dart';
+import 'package:voice/faculty/faculty_home.dart';
 import 'package:voice/reusable_widgets/gen_stud_postcard.dart';
 import 'package:voice/student/draft_general.dart';
 import 'package:voice/student/student_home.dart';
@@ -20,18 +21,8 @@ class _facultyGeneralState extends State<facultyGeneral> {
       appBar: AppBar(
             leading: IconButton(
         icon: Icon(Icons.arrow_back),
-        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>studentHomeScreen()))),
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>facultyHomeScreen()))),
         //add an icon to right side of appbar
-        actions: [
-          IconButton(
-            //on pressed function to navigate to the draft page of general complaints
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>draftGeneral()));
-            },
-            //icon for a pen to write a new complaint
-            icon: Icon(Icons.create_outlined),
-          ),
-        ],
       backgroundColor: Color.fromRGBO(0, 28, 46, 1),
         centerTitle: true,
         title: const Text(
