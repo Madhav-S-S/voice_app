@@ -21,7 +21,14 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
     return Scaffold(
       appBar: AppBar(
         //create a dashboard app bar
-        
+        actions: [
+          IconButton(
+            onPressed: () {
+            },
+            //icon for bashboard options
+            icon: Icon(Icons.space_dashboard_rounded),
+          ),
+        ],
       backgroundColor: Color.fromRGBO(0, 28, 46, 1),
       leading : null,
         automaticallyImplyLeading: false,
