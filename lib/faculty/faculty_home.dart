@@ -86,7 +86,7 @@ class _facultyHomeScreenState extends State<facultyHomeScreen> {
                   SizedBox(height: 30,),
                   GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>facultyGeneral()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>facultyOpen()));
                     },
                     child: Container(height:150,width:1000,
                         child: Center(

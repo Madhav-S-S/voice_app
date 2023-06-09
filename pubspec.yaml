@@ -22,6 +22,7 @@ dependencies:
   animated_splash_screen: ^1.3.0
   page_transition: ^2.0.9
   uuid: ^3.0.7
+  easy_sidemenu: ^0.4.1+1
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
