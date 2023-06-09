@@ -501,6 +501,7 @@ class _SignUpState extends State<SignUpScreen> {
                         SizedBox(
                           height: 20,
                         ),
+                        !show?
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -550,7 +551,7 @@ class _SignUpState extends State<SignUpScreen> {
                               ),
                             ),
                           ],
-                        ),
+                        ):Container(),
                         SizedBox(
                           height: 20,
                         ),
