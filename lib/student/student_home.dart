@@ -1,4 +1,4 @@
-
+import 'package:voice/student/NavBar.dart';
 import 'package:voice/student/general_complaints.dart';
 import 'package:voice/student/open_complaints.dart';
 import 'package:voice/student/personal_complaints.dart';
@@ -8,7 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:voice/utils/color_utils.dart';
 import 'package:voice/core/utils/image_constant.dart';
-import 'package:easy_sidemenu/easy_sidemenu.dart';
 
 class studentHomeScreen extends StatefulWidget {
   const studentHomeScreen({Key? key}) : super(key: key);
@@ -21,48 +20,12 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            ListTile(
-              title: Text('Home'),
-              onTap: () {
-                //TODO: Go to Home page
-              },
-            ),
-            ListTile(
-              title: Text('About'),
-              onTap: () {
-                //TODO: Go to About page
-              },
-            ),
-            ListTile(
-              title: Text('Contact'),
-              onTap: () {
-                //TODO: Go to Contact page
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: NavBar(),
       appBar: AppBar(
         //create a dashboard app bar
-        actions: [
-          IconButton(
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return stud_dashboard();
-                  });
-            },
-            //icon for bashboard options
-            icon: Icon(Icons.space_dashboard_rounded),
-          ),
-        ],
         backgroundColor: Color.fromRGBO(0, 28, 46, 1),
-        leading: null,
-        automaticallyImplyLeading: false,
+        // leading: null,
+        // automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text(
           "STUDENT HOME",
@@ -215,56 +178,4 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
       ),
     );
   }
-  stud_dashboard(){
-    //align the container to the right 
-  return Container(
-    child: AlertDialog(
-      title: Text("Dashboard"),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Personal Complaints"),
-            onTap: () {
-              Navigator.push(
-                  context as BuildContext,
-                  MaterialPageRoute(
-                      builder: (context) => personalComplaints()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.group),
-            title: Text("General Complaints"),
-            onTap: () {
-              Navigator.push(
-                  context as BuildContext,
-                  MaterialPageRoute(
-                      builder: (context) => generalComplaints()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.open_in_new),
-            title: Text("Open Complaints"),
-            onTap: () {
-              Navigator.push(
-                  context as BuildContext,
-                  MaterialPageRoute(
-                      builder: (context) => openComplaints()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.logout),
-            title: Text("Logout"),
-            onTap: () {
-              FirebaseAuth.instance.signOut();
-              Navigator.push(
-                  context as BuildContext, MaterialPageRoute(builder: (context) => LoginPage()));
-            },
-          ),
-        ],
-      ),
-    ),
-  );
-}
 }
