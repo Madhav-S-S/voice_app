@@ -13,18 +13,17 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUpScreen> {
-
   _SignUpState();
 
   bool showProgress = false;
   bool visible = false;
+  bool show = true;
 
   final _formkey = GlobalKey<FormState>();
   final _auth = FirebaseAuth.instance;
 
   final TextEditingController passwordController = new TextEditingController();
-  final TextEditingController advisorController =
-      new TextEditingController();
+  final TextEditingController advisorController = new TextEditingController();
   final TextEditingController confirmpassController =
       new TextEditingController();
   final TextEditingController name = new TextEditingController();
@@ -353,13 +352,12 @@ class _SignUpState extends State<SignUpScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        if(_currentItemSelected == 'STUDENT')
                         TextFormField(
                           controller: advisorController,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Color(0x77ffffff),
-                            hintText: 'ADVISOR MAIL ID',
+                            hintText: show?'ADVISOR MAIL ID':'HOD MAIL ID',
                             hintStyle: TextStyle(
                                 fontFamily: 'Poppins', color: Colors.white38),
                             enabled: true,
@@ -433,6 +431,10 @@ class _SignUpState extends State<SignUpScreen> {
                                 onChanged: (newValueSelected) {
                                   setState(() {
                                     _currentItemSelected = newValueSelected!;
+                                    if(_currentItemSelected == "Student")
+                                      show = true;
+                                    else
+                                      show = false;
                                     role = newValueSelected;
                                   });
                                 },
@@ -647,8 +649,12 @@ class _SignUpState extends State<SignUpScreen> {
           'advisor': advisorController.text,
         });
       } else {
-        ref.doc(user!.uid).set(
-            {'email': emailController.text, 'role': role, 'uid': user.uid,'branch':branch});
+        ref.doc(user!.uid).set({
+          'email': emailController.text,
+          'role': role,
+          'uid': user.uid,
+          'branch': branch
+        });
       }
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => LoginPage()));
