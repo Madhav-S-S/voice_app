@@ -31,7 +31,7 @@ class _facultyGeneralState extends State<facultyGeneral> {
         ),
       ),
       body: Container(
-        color:voiceBlue,
+        color:facColor,
         child: Container(
           decoration: BoxDecoration(
                 //make border radius circular only at the top

@@ -43,7 +43,7 @@ class _facultyPersonalState extends State<facultyPersonal> {
         ),
       ),
       body: Container(
-        color:voiceBlue,
+        color:facColor,
         child: Container(
           decoration: BoxDecoration(
                 //make border radius circular only at the top

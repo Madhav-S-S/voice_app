@@ -45,7 +45,7 @@ class _facOpenComplaintsState extends State<facOpenComplaints> {
         ),
       ),
       body: Container(
-        color: voiceBlue,
+        color: facColor,
         child: Container(
           decoration: BoxDecoration(
               //make border radius circular only at the top
