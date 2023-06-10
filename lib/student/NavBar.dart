@@ -20,41 +20,42 @@ class NavBar extends StatelessWidget {
         CircleAvatar(
           radius: 70,
           child: CircleAvatar(
-            radius: 80,
+            radius: 90,
             backgroundImage: AssetImage("assets/images/img_profile21.png"),
           ),
         ),
         SizedBox(height: 10,),
         Text("SAINTGITS MAIL ID : ",style: TextStyle(color: Colors.white,fontSize: 15,fontFamily: "Poppins"),textAlign: TextAlign.center,),
         Text(mail.toString(),style: TextStyle(color: Colors.white,fontSize: 15,fontFamily: "Poppins"),textAlign: TextAlign.center,),
+        SizedBox(height: 10,),
       Container(
         height: 0.1,
         color: Colors.grey,
       ),
         ListTile(
           leading: Icon(Icons.home),
-          title: Text('Home'),
+          title: Text('Home',style: TextStyle(color: Colors.white,fontSize: 15,fontFamily: 'Poppins'),),
           onTap: () {
             Navigator.pushNamed(context, '/studenthome');
           },
         ),
         ListTile(
           leading: Icon(Icons.account_circle),
-          title: Text('Profile'),
+          title: Text('Profile',style: TextStyle(color: Colors.white,fontSize: 15,fontFamily: 'Poppins')),
           onTap: () {
             Navigator.pushNamed(context, '/studentprofile');
           },
         ),
         ListTile(
           leading: Icon(Icons.settings),
-          title: Text('Settings'),
+          title: Text('Settings',style: TextStyle(color: Colors.white,fontSize: 15,fontFamily: 'Poppins')),
           onTap: () {
             Navigator.pushNamed(context, '/studentsettings');
           },
         ),
         ListTile(
           leading: Icon(Icons.logout),
-          title: Text('Logout'),
+          title: Text('Logout',style: TextStyle(color: Colors.white,fontSize: 15,fontFamily: 'Poppins')),
           onTap: () {
             FirebaseAuth.instance.signOut().then((value) {
                         print("Signed Out");
@@ -70,15 +71,14 @@ class NavBar extends StatelessWidget {
         child: Column(
           children: [
             Image.asset("assets/images/img_voiceicon.png"),
-            Text("VOICE",style: TextStyle(fontSize: 25,fontFamily: "Poppins"),textAlign: TextAlign.center,),
+            Text("VOICE",style: TextStyle(fontSize: 25,fontFamily: "Poppins"),textAlign: TextAlign.left,),
           ],
         )
       ),
-        SizedBox(height: 200,),
         //add a text to bottom of the drawer
         Container(
           padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-          child: Text("MADE WITH ❤️ AT SAINTGITS\n version 1.0.0",style: TextStyle(color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
+          child: Text("MADE WITH ❤️ AT SAINTGITS\n version 1.0.0",style: TextStyle(fontFamily:"Poppins",color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
         )
       ]
       ),
