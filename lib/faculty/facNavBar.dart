@@ -79,7 +79,7 @@ class facNavBar extends StatelessWidget {
         //add a text to bottom of the drawer
         Container(
           padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-          child: Text("MADE WITH ❤️ AT SAINTGITS\n version 1.0.0",style: TextStyle(fontFamily:"Poppins",color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
+          child: Text("MADE WITH ❤️ IN SAINTGITS\n version 1.0.0",style: TextStyle(fontFamily:"Poppins",color: Colors.white,fontSize: 10),textAlign: TextAlign.center,),
         )
       ]
       ),

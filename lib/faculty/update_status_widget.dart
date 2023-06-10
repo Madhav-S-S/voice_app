@@ -26,8 +26,7 @@ updateStatusWidget(){
                              Padding(
                                padding: const EdgeInsets.only(left: 20,),
                                child: TextField(
-                                  controller: null,
-                                  maxLines: null,
+                                  controller:null,                                  maxLines: null,
                                   decoration: InputDecoration(
                                       //set the color of of the field as white
                                       filled: true,
