@@ -1,5 +1,8 @@
+import 'package:voice/faculty/facNavBar.dart';
 import 'package:voice/faculty/faculty_general.dart';
 import 'package:voice/faculty/faculty_open.dart';
+import 'package:voice/faculty/faculty_personal.dart';
+import 'package:voice/student/NavBar.dart';
 import 'package:voice/student/general_complaints.dart';
 import 'package:voice/student/open_complaints.dart';
 import 'package:voice/student/personal_complaints.dart';
@@ -21,18 +24,9 @@ class _facultyHomeScreenState extends State<facultyHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer : facNavBar(),
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-            },
-            //icon for bashboard options
-            icon: Icon(Icons.space_dashboard_rounded),
-          ),
-        ],
-      backgroundColor: Color.fromRGBO(0, 28, 46, 1),
-      leading : null,
-        automaticallyImplyLeading: false,
+      backgroundColor: facColor,
         centerTitle: true,
         title: const Text(
           "FACULTY HOME",
@@ -104,7 +98,7 @@ class _facultyHomeScreenState extends State<facultyHomeScreen> {
                   SizedBox(height: 30),
                   GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>facultyOpen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>facultyPersonal()));
                     },
                     child: Container(height:150,width:1000,
                         child: Center(
@@ -123,29 +117,6 @@ class _facultyHomeScreenState extends State<facultyHomeScreen> {
                         height: 40,
                       ),
                       //increase the width of the MaterialButton below
-                      MaterialButton(
-                        minWidth: MediaQuery.of(context).size.width-100,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0))),
-                        elevation: 5.0,
-                        height: 50,
-                        onPressed: () {
-                              FirebaseAuth.instance.signOut().then((value) {
-                                print("Signed Out");
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => LoginPage()));
-                              });
-                            },
-                        child: Text(
-                          "Log Out",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                          ),
-                        ),
-                        color: Colors.white,
-                      ),
                 ],
               ),
             ))),

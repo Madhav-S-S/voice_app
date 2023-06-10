@@ -23,7 +23,7 @@ class _facultyGeneralState extends State<facultyGeneral> {
         icon: Icon(Icons.arrow_back),
         onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>facultyHomeScreen()))),
         //add an icon to right side of appbar
-      backgroundColor: Color.fromRGBO(0, 28, 46, 1),
+      backgroundColor: facColor,
         centerTitle: true,
         title: const Text(
           "GENERAL",

@@ -120,7 +120,7 @@ class _draftPersonalState extends State<draftPersonal> {
     //get branch attribute from the current user from firestore
     //String branch = (await FirebaseFirestore.instance.collection('users').doc(user?.uid).get()).get('branch');
     DocumentReference docRef =
-        FirebaseFirestore.instance.collection('personal_complaints').doc(advisor).collection(email).doc();
+        FirebaseFirestore.instance.collection('personal_complaints').doc(advisor).collection(email).doc(postId);
     docRef.set({
       'title': title,
       'description': description,

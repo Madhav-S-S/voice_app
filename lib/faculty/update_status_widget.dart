@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:voice/utils/color_utils.dart';
 
 updateStatusWidget(){
   return Dialog(
@@ -14,7 +15,7 @@ updateStatusWidget(){
                           color: Colors.black54.withOpacity(0.8),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        height: 500,
+                        height: 300,
                         width: 300,
                         child: Column(
                           children: [
@@ -39,32 +40,26 @@ updateStatusWidget(){
                                   style: TextStyle(fontSize: 20),
                                 ),
                              ),
-                             ListView(
-                               shrinkWrap: true,
-                               children: [
-                                 ListTile(
-                                   title: Text('Complaint ID:'),
-                                   subtitle: Text('123456789'),
-                                 ),
-                                 ListTile(
-                                   title: Text('Complaint Type:'),
-                                   subtitle: Text('General'),
-                                 ),
-                                 ListTile(
-                                   title: Text('Complaint Description:'),
-                                   subtitle: Text('This is a general complaint'),
-                                 ),
-                                 ListTile(
-                                   title: Text('Complaint Status:'),
-                                   subtitle: Text('Open'),
-                                 ),
-                               ],
-                             ),
+                             
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                ElevatedButton(onPressed: (){}, child: Text('Resolved')),
-                                ElevatedButton(onPressed: (){}, child: Text('Not Resolved')),
+                                //style the buttons
+                                ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color.fromARGB(69, 158, 158, 158),
+                            ),
+                            onPressed: () {},
+                            child: Text('Resolved ✔️'),
+                            ),
+                            ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color.fromARGB(69, 158, 158, 158),
+                            ),
+                            onPressed: () {},
+                            child: Text('Not Resolved ❌'),
+                            ),
+                            
                               ],
                             )
                           ],
