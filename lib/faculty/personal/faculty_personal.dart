@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:voice/faculty/fac_postcard.dart';
 import 'package:voice/faculty/faculty_home.dart';
+import 'package:voice/faculty/personal/fac_personal_postcard.dart';
 import 'package:voice/reusable_widgets/gen_stud_postcard.dart';
 import 'package:voice/student/draft_general.dart';
 import 'package:voice/student/draft_personal.dart';
@@ -33,7 +35,7 @@ class _facultyPersonalState extends State<facultyPersonal> {
         icon: Icon(Icons.arrow_back),
         onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>facultyHomeScreen()))),
         //add an icon to right side of appbar
-      backgroundColor: Color.fromRGBO(0, 28, 46, 1),
+      backgroundColor: facColor,
         centerTitle: true,
         title: const Text(
           "PERSONAL",
@@ -54,7 +56,7 @@ class _facultyPersonalState extends State<facultyPersonal> {
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: StreamBuilder(
             //order the complaints by date published
-            stream: FirebaseFirestore.instance.collection('personal_complaints').doc(email).collection('madhav.csb2024@saintgits.org').snapshots(),
+            stream: FirebaseFirestore.instance.collection('personal_complaints').where('advisor',isEqualTo: email).snapshots(),
             builder: (context,
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -64,7 +66,7 @@ class _facultyPersonalState extends State<facultyPersonal> {
               }
               return ListView.builder(
                 itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) => PostCard(
+                itemBuilder: (context, index) => facultyPersonalPost(
                   snap : snapshot.data!.docs[index].data(),
                 ),
              
