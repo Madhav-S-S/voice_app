@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:voice/faculty/update_status_widget.dart';
 import 'package:voice/methods/firestore_methods.dart';
 import 'package:voice/reusable_widgets/reusable_widget.dart';
 class facultyPersonalPost extends StatefulWidget {
@@ -22,6 +21,8 @@ class facultyPersonalPost extends StatefulWidget {
 
 class _facultyPersonalPostState extends State<facultyPersonalPost> {
     final database = FirebaseFirestore.instance;
+    
+     TextEditingController _statusController = TextEditingController();
      deletePost(String postId) async {
     try {
       await FireStoreMethods().deletePost(postId);
@@ -193,4 +194,94 @@ class _facultyPersonalPostState extends State<facultyPersonalPost> {
       )
     );
   }
+  updateStatusWidget(){
+  return Dialog(
+                    backgroundColor: Colors.transparent,
+                   child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          //make the border circular
+                          //make background blur of the container          
+                          color: Colors.black54.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        height: 300,
+                        width: 300,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20,),
+                            //increase the size of the update status text
+                            Text('Update Status', style: TextStyle(fontSize: 20,fontFamily: 'Poppins'),),
+                            SizedBox(height: 20,),
+                             Padding(
+                               padding: const EdgeInsets.only(left: 20,),
+                               child: TextField(
+                                  controller:_statusController,
+                                  maxLines: null,
+                                  decoration: InputDecoration(
+                                      //set the color of of the field as white
+                                      filled: true,
+                                      fillColor: Colors.white.withOpacity(0.1),
+                                      icon:Icon(Icons.update),
+                                      hintText: "Update Status here",
+                                      hintStyle: TextStyle(color: Colors.grey),
+                                      border: InputBorder.none,
+                                  ),
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                             ),
+                             Padding(
+                               padding: const EdgeInsets.only(right: 10,),
+                               child: Align(
+                                  alignment: Alignment.bottomRight,
+                                 child: ElevatedButton(
+                                                           style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color.fromARGB(69, 0, 187, 255),
+                                                           ),
+                                                           onPressed: () {
+                                                              updateStatus(widget.snap['postId'].toString());
+                                                              Navigator.of(context).pop();
+                                                           },
+                                                           child: Text('Update'),
+                                                           ),
+                               ),
+                             ),
+                            SizedBox(height: 30,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                //style the buttons
+                                ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromARGB(69, 0, 242, 255),
+                            ),
+                            onPressed: () {},
+                            child: Text('Resolved ✔️'),
+                            ),
+                            ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromARGB(69, 255, 0, 0),
+                            ),
+                            onPressed: () {},
+                            child: Text('Not Resolved ❌'),
+                            ),
+                            
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
 }
+  //function to update the status of the complaint
+  updateStatus(String postId) async{
+    await FirebaseFirestore.instance.collection('posts').doc(postId).update({
+      'status': _statusController.text,
+    });
+  }
+  //function to delete the post
+}
+
+

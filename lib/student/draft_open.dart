@@ -130,6 +130,8 @@ class _draftOpenState extends State<draftOpen> {
       'downvotes': [],
       'type': 'open_complaints',
       'branch': branch,
+      'status': "Not Resolved",
+      'statusDes': "No History",
       //'branch': branch,
     });
   }

@@ -120,6 +120,8 @@ class _draftGeneralState extends State<draftGeneral> {
       'upvotes': [],
       'downvotes': [],
       'type': "gen_complaints",
+      'status': "Not Resolved",
+      'statusDes': "No History",
       //'branch': branch,
     });
   }

@@ -132,7 +132,9 @@ class _draftPersonalState extends State<draftPersonal> {
       'downvotes': [],
       'type': "personal_complaints",
       'advisor': advisor,
-      'student': email
+      'student': email,
+      'status': "Not Resolved",
+      'statusDes': "No History",
       //'branch': branch,
     });
   }
