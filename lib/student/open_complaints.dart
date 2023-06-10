@@ -16,7 +16,7 @@ class openComplaints extends StatefulWidget {
 }
 
 class _openComplaintsState extends State<openComplaints> {
-  var branch2;
+  var branch;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,7 @@ class _openComplaintsState extends State<openComplaints> {
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .get()
-        .then((docSnapshot) => {branch2 = docSnapshot.data()?['branch']});
-    String branch3 = "${branch2}_complaints";
+        .then((docSnapshot) => {branch = docSnapshot.data()?['branch']});
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -71,7 +70,7 @@ class _openComplaintsState extends State<openComplaints> {
             stream: FirebaseFirestore.instance
                 //check branch of the current user and assign it to variable 'branch'
 
-                .collection('csb2024_complaints')
+                .collection('open_complaints').where('branch',isEqualTo: branch)
                 .orderBy('upvotes', descending: true)
                 .snapshots(),
             builder: (context,

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/faculty/fac_postcard.dart';
-import 'package:voice/faculty/faculty_home.dart';
 import 'package:voice/methods/firestore_methods.dart';
 import 'package:voice/student/gen_stud_postcard.dart';
 import 'package:voice/student/draft_general.dart';
@@ -10,15 +9,15 @@ import 'package:voice/student/draft_open.dart';
 import 'package:voice/student/student_home.dart';
 import 'package:voice/utils/color_utils.dart';
 
-class facultyOpen extends StatefulWidget {
-  const facultyOpen({Key? key}) : super(key: key);
+class facOpenComplaints extends StatefulWidget {
+  const facOpenComplaints({Key? key}) : super(key: key);
 
   @override
-  _facultyOpenState createState() => _facultyOpenState();
+  _facOpenComplaintsState createState() => _facOpenComplaintsState();
 }
 
-class _facultyOpenState extends State<facultyOpen> {
-  var branch2;
+class _facOpenComplaintsState extends State<facOpenComplaints> {
+  var branch;
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +25,26 @@ class _facultyOpenState extends State<facultyOpen> {
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .get()
-        .then((docSnapshot) => {branch2 = docSnapshot.data()?['branch']});
-    String branch3 = "${branch2}_complaints";
+        .then((docSnapshot) => {branch = docSnapshot.data()?['branch']});
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => facultyHomeScreen()))),
+                MaterialPageRoute(builder: (context) => studentHomeScreen()))),
         //add an icon to right side of appbar
-        backgroundColor: facColor,
+        actions: [
+          IconButton(
+            //on pressed function to navigate to the draft page of general complaints
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => draftOpen()));
+            },
+            //icon for a pen to write a new complaint
+            icon: Icon(Icons.create_outlined),
+          ),
+        ],
+        backgroundColor: Color.fromRGBO(0, 28, 46, 1),
         centerTitle: true,
         title: const Text(
           "OPEN",
@@ -62,7 +71,7 @@ class _facultyOpenState extends State<facultyOpen> {
             stream: FirebaseFirestore.instance
                 //check branch of the current user and assign it to variable 'branch'
 
-                .collection('csb2024_complaints')
+                .collection('open_complaints').where('branch',isEqualTo: branch)
                 .orderBy('upvotes', descending: true)
                 .snapshots(),
             builder: (context,

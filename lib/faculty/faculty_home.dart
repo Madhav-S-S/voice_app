@@ -1,6 +1,6 @@
 import 'package:voice/faculty/facNavBar.dart';
+import 'package:voice/faculty/fac_open_complaints.dart';
 import 'package:voice/faculty/faculty_general.dart';
-import 'package:voice/faculty/faculty_open.dart';
 import 'package:voice/faculty/personal/faculty_personal.dart';
 import 'package:voice/student/NavBar.dart';
 import 'package:voice/student/general_complaints.dart';
@@ -80,7 +80,7 @@ class _facultyHomeScreenState extends State<facultyHomeScreen> {
                   SizedBox(height: 30,),
                   GestureDetector(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>facultyOpen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>facOpenComplaints()));
                     },
                     child: Container(height:150,width:1000,
                         child: Center(

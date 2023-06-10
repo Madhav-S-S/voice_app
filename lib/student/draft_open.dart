@@ -117,9 +117,8 @@ class _draftOpenState extends State<draftOpen> {
     //get branch attribute from the current user from firestore
     //String branch = (await FirebaseFirestore.instance.collection('users').doc(user?.uid).get()).get('branch');
     DocumentReference docRef = FirebaseFirestore.instance
-        .collection('${branch}_complaints')
+        .collection('open_complaints')
         .doc(postId);
-    print('${branch}_complaints');
     docRef.set({
       'title': title,
       'description': description,
@@ -129,7 +128,8 @@ class _draftOpenState extends State<draftOpen> {
       //set the value of 'upvotes' in firestore to an empty array
       'upvotes': [],
       'downvotes': [],
-      'type': '${branch}_complaints',
+      'type': 'open_complaints',
+      'branch': branch,
       //'branch': branch,
     });
   }
