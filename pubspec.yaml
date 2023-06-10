@@ -31,6 +31,7 @@ flutter:
   assets: 
     - assets/
     - assets/images/img_voiceicon.png
+    - "assets/images/img_profile21.png"
   fonts: 
     - family: Poppins
       fonts: 
