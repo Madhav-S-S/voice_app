@@ -7,7 +7,7 @@ import 'package:uuid/uuid.dart';
 import 'package:voice/student/general_complaints.dart';
 import 'package:voice/student/open_complaints.dart';
 import 'package:voice/utils/color_utils.dart';
-import 'package:voice/reusable_widgets/gen_stud_postcard.dart';
+import 'package:voice/student/gen_stud_postcard.dart';
 
 class draftOpen extends StatefulWidget {
   const draftOpen({Key? key}) : super(key: key);

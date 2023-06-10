@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:voice/faculty/fac_postcard.dart';
 import 'package:voice/faculty/faculty_home.dart';
 import 'package:voice/methods/firestore_methods.dart';
-import 'package:voice/reusable_widgets/gen_stud_postcard.dart';
+import 'package:voice/student/gen_stud_postcard.dart';
 import 'package:voice/student/draft_general.dart';
 import 'package:voice/student/draft_open.dart';
 import 'package:voice/student/student_home.dart';

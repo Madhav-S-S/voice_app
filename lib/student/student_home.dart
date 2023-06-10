@@ -1,7 +1,7 @@
 import 'package:voice/student/NavBar.dart';
 import 'package:voice/student/general_complaints.dart';
 import 'package:voice/student/open_complaints.dart';
-import 'package:voice/student/personal_complaints.dart';
+import 'package:voice/student/student_personal/personal_complaints.dart';
 import 'package:voice/login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';

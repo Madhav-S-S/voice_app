@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:voice/reusable_widgets/gen_stud_postcard.dart';
+import 'package:voice/student/gen_stud_postcard.dart';
 import 'package:voice/student/draft_general.dart';
 import 'package:voice/student/draft_personal.dart';
 import 'package:voice/student/student_home.dart';
+import 'package:voice/student/student_personal/student_pers_postcard.dart';
 import 'package:voice/utils/color_utils.dart';
 
 class personalComplaints extends StatefulWidget {
@@ -63,7 +64,7 @@ class _personalComplaintsState extends State<personalComplaints> {
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: StreamBuilder(
             //order the complaints by date published
-            stream: FirebaseFirestore.instance.collection('personal_complaints').doc(advisor).collection(email).snapshots(),
+            stream: FirebaseFirestore.instance.collection('personal_complaints').where('student',isEqualTo: email).snapshots(),
             builder: (context,
                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -73,7 +74,7 @@ class _personalComplaintsState extends State<personalComplaints> {
               }
               return ListView.builder(
                 itemCount: snapshot.data!.docs.length,
-                itemBuilder: (context, index) => PostCard(
+                itemBuilder: (context, index) => studPersPostCard(
                   snap : snapshot.data!.docs[index].data(),
                 ),
              

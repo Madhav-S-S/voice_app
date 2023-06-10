@@ -5,9 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'package:voice/student/general_complaints.dart';
-import 'package:voice/student/personal_complaints.dart';
+import 'package:voice/student/student_personal/personal_complaints.dart';
 import 'package:voice/utils/color_utils.dart';
-import 'package:voice/reusable_widgets/gen_stud_postcard.dart';
+import 'package:voice/student/gen_stud_postcard.dart';
 
 class draftPersonal extends StatefulWidget {
   const draftPersonal({Key? key}) : super(key: key);

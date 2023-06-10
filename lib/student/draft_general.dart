@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'package:voice/student/general_complaints.dart';
 import 'package:voice/utils/color_utils.dart';
-import 'package:voice/reusable_widgets/gen_stud_postcard.dart';
+import 'package:voice/student/gen_stud_postcard.dart';
 
 class draftGeneral extends StatefulWidget {
   const draftGeneral({Key? key}) : super(key: key);
