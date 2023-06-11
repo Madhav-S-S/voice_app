@@ -218,88 +218,96 @@ class _facultyPostCardState extends State<facultyPostCard> {
             color: Colors.black54.withOpacity(0.8),
             borderRadius: BorderRadius.circular(20),
           ),
-          height: 300,
+          height: 500,
           width: 300,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              //increase the size of the update status text
-              Text(
-                'Update Status',
-                style: TextStyle(fontSize: 20, fontFamily: 'Poppins'),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 20,
+          child: SingleChildScrollView(
+            //enable single child scroll view
+            
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20,
                 ),
-                child: TextField(
-                  controller: _statusController,
-                  maxLines: null,
-                  decoration: InputDecoration(
-                    //set the color of of the field as white
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.1),
-                    icon: Icon(Icons.update),
-                    hintText: "Update Status here",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    border: InputBorder.none,
+                //increase the size of the update status text
+                Text(
+                  'Update Status',
+                  style: TextStyle(fontSize: 20, fontFamily: 'Poppins'),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20,
                   ),
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  right: 10,
-                ),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(69, 0, 187, 255),
+                  child: TextField(
+                    controller: _statusController,
+                    maxLines: null,
+                    decoration: InputDecoration(
+                      //set the color of of the field as white
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.1),
+                      icon: Icon(Icons.update),
+                      hintText: "Update Status here",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      border: InputBorder.none,
                     ),
-                    onPressed: () {
-                      updateStatusDescription(widget.snap['postId'].toString(),
-                          widget.snap['type'].toString());
-                      Navigator.of(context).pop();
-                    },
-                    child: Text('Update'),
+                    style: TextStyle(fontSize: 20),
                   ),
                 ),
-              ),
-              
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  //style the buttons
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(69, 0, 242, 255),
-                    ),
-                    onPressed: () {
-                      updateStatus("Resolved",widget.snap['type'].toString(),widget.snap['postId'].toString());
-                    },
-                    child: Text('Resolved ✔️'),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 10,
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(69, 255, 0, 0),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(69, 0, 187, 255),
+                      ),
+                      onPressed: () {
+                        updateStatusDescription(widget.snap['postId'].toString(),
+                            widget.snap['type'].toString());
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('Update'),
                     ),
-                    onPressed: () {
-                      updateStatus("Not Resolved",widget.snap['type'].toString(),widget.snap['postId'].toString());
-                    },
-                    child: Text('Not Resolved ❌'),
                   ),
-                ],
-              )
-            ],
+                ),
+                Text("Current Update : \n${widget.snap['statusDes']}",style: TextStyle(color: Colors.white,fontFamily: 'Poppins'),),
+                SizedBox(
+                  height: 30,
+                ),
+                Text("Status : ${widget.snap['status']}",style: TextStyle(color: Colors.white,fontFamily: 'Poppins'),),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    //style the buttons
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(69, 0, 242, 255),
+                      ),
+                      onPressed: () {
+                        updateStatus("Resolved",widget.snap['type'].toString(),widget.snap['postId'].toString());
+                      },
+                      child: Text('Resolved ✔️'),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(69, 255, 0, 0),
+                      ),
+                      onPressed: () {
+                        updateStatus("Not Resolved",widget.snap['type'].toString(),widget.snap['postId'].toString());
+                      },
+                      child: Text('Not Resolved ❌'),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

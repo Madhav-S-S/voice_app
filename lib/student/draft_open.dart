@@ -20,7 +20,6 @@ class _draftOpenState extends State<draftOpen> {
   final _auth = FirebaseAuth.instance;
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  static var branchfeed;
   @override
   void dispose() {
     // TODO: implement dispose
@@ -111,7 +110,6 @@ class _draftOpenState extends State<draftOpen> {
             .doc(_auth.currentUser?.uid)
             .get())
         .get('branch');
-        branchfeed = branch;
     var user = _auth.currentUser;
     String postId = Uuid().v4();
     //get branch attribute from the current user from firestore

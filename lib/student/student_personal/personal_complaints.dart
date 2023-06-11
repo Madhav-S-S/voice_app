@@ -21,11 +21,6 @@ class _personalComplaintsState extends State<personalComplaints> {
   
   @override
   Widget build(BuildContext context) {
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser?.uid)
-        .get()
-        .then((docSnapshot) => {advisor = docSnapshot.data()?['advisor']});
     String email = FirebaseAuth.instance.currentUser!.email!;
     return Scaffold(
       appBar: AppBar(

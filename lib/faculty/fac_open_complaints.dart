@@ -18,15 +18,24 @@ class facOpenComplaints extends StatefulWidget {
 }
 
 class _facOpenComplaintsState extends State<facOpenComplaints> {
-  var branch;
-
   @override
   Widget build(BuildContext context) {
+    // FirebaseFirestore.instance
+    // .collection('users')
+    // .doc(FirebaseAuth.instance.currentUser?.uid)
+    // .get()
+    // .then((docSnapshot) async {
+    //   branch = docSnapshot.data()?['branch'];
+    // });
+
+    var classRoom;
     FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .get()
-        .then((docSnapshot) => {branch = docSnapshot.data()?['branch']});
+        .then((docSnapshot) async {
+       classRoom= docSnapshot.data()?['branch'];
+    });
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -61,7 +70,8 @@ class _facOpenComplaintsState extends State<facOpenComplaints> {
             stream: FirebaseFirestore.instance
                 //check branch of the current user and assign it to variable 'branch'
 
-                .collection('open_complaints').where('branch',isEqualTo: branch)
+                .collection('open_complaints')
+                .where('branch', isEqualTo: classRoom)
                 .orderBy('upvotes', descending: true)
                 .snapshots(),
             builder: (context,
