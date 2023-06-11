@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -170,24 +172,84 @@ class _studPersPostCardState extends State<studPersPostCard> {
                   child: Align(
                 alignment: Alignment.bottomRight,
               )),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Container(
-                  child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color.fromARGB(46, 255, 255, 255)
-                                ),
-                              onPressed: () {},
-                              child: Text('Status'),
-                              ),
-                ),
-              ),
+             IconButton(
+                  iconSize: 30.0,
+                  //increase the size of the icon
+                  icon: Icon(
+                    Icons.query_stats_outlined,
+                  ),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return statusWidget();
+                      });
+                  }),
               SizedBox(width: 15)
             ],
           ),
           //date published of the post
         ]
       )
+    );
+  }
+  statusWidget() {
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          decoration: BoxDecoration(
+            //make the border circular
+            //make background blur of the container
+            color: Colors.black54.withOpacity(0.8),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          height: 500,
+          width: 300,
+          child: SingleChildScrollView(
+            //enable single child scroll view
+
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                //increase the size of the update status text
+                Text(
+                  'Complaint Status',
+                  style: TextStyle(fontSize: 20, fontFamily: 'Poppins'),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text("CURRENT UPDATE",style: TextStyle(fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.bold),),
+                Text(
+                  "${widget.snap['statusDes']}",
+                  style: TextStyle(color: Colors.white, fontFamily: 'Poppins'),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Text("STATUS",style: TextStyle(fontFamily: 'Poppins',fontSize: 15,fontWeight: FontWeight.bold),),
+                Text(
+                  "${widget.snap['status']}",
+                  style: TextStyle(color: Colors.white, fontFamily: 'Poppins'),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    //style the buttons
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

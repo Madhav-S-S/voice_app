@@ -18,24 +18,31 @@ class facOpenComplaints extends StatefulWidget {
 }
 
 class _facOpenComplaintsState extends State<facOpenComplaints> {
-  @override
-  Widget build(BuildContext context) {
-    // FirebaseFirestore.instance
-    // .collection('users')
-    // .doc(FirebaseAuth.instance.currentUser?.uid)
-    // .get()
-    // .then((docSnapshot) async {
-    //   branch = docSnapshot.data()?['branch'];
-    // });
-
     var classRoom;
+
+  @override
+  void initState() {
+    super.initState();
+
     FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .get()
         .then((docSnapshot) async {
-       classRoom= docSnapshot.data()?['branch'];
+      classRoom = docSnapshot.data()?['branch'];
     });
+  }
+  @override
+  Widget build(BuildContext context) {
+
+    // var classRoom;
+    // FirebaseFirestore.instance
+    //     .collection('users')
+    //     .doc(FirebaseAuth.instance.currentUser?.uid)
+    //     .get()
+    //     .then((docSnapshot) async {
+    //   classRoom = docSnapshot.data()?['branch'];
+    // });
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

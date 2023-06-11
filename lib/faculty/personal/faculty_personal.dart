@@ -18,7 +18,6 @@ class facultyPersonal extends StatefulWidget {
 }
 
 class _facultyPersonalState extends State<facultyPersonal> {
-  var advisor;
 
   
   @override
