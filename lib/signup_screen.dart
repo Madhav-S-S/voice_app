@@ -357,7 +357,7 @@ class _SignUpState extends State<SignUpScreen> {
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Color(0x77ffffff),
-                            hintText: show?'ADVISOR MAIL ID':'HOD MAIL ID',
+                            hintText: show ? 'ADVISOR MAIL ID' : 'HOD MAIL ID',
                             hintStyle: TextStyle(
                                 fontFamily: 'Poppins', color: Colors.white38),
                             enabled: true,
@@ -431,7 +431,7 @@ class _SignUpState extends State<SignUpScreen> {
                                 onChanged: (newValueSelected) {
                                   setState(() {
                                     _currentItemSelected = newValueSelected!;
-                                    if(_currentItemSelected == "Student")
+                                    if (_currentItemSelected == "Student")
                                       show = true;
                                     else
                                       show = false;
@@ -501,57 +501,60 @@ class _SignUpState extends State<SignUpScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        !show?
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Class : ",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'Poppins',
-                                color: Colors.white,
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: 150,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                //make the color of the container transparent
-                                color: Color(0x33FFFFFF),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: DropdownButton<String>(
-                                dropdownColor: voiceBlue,
-                                isDense: true,
-                                isExpanded: false,
-                                iconEnabledColor: Colors.white,
-                                focusColor: Colors.white,
-                                items: _class.map((String dropDownStringItem) {
-                                  return DropdownMenuItem<String>(
-                                    value: dropDownStringItem,
-                                    child: Text(
-                                      dropDownStringItem,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Poppins',
-                                        fontSize: 20,
-                                      ),
+                        !show
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Class : ",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Poppins',
+                                      color: Colors.white,
                                     ),
-                                  );
-                                }).toList(),
-                                onChanged: (newValueSelected) {
-                                  setState(() {
-                                    _currentItemSelected3 = newValueSelected!;
-                                    branch = newValueSelected;
-                                  });
-                                },
-                                value: _currentItemSelected3,
-                              ),
-                            ),
-                          ],
-                        ):Container(),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.center,
+                                    width: 150,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      //make the color of the container transparent
+                                      color: Color(0x33FFFFFF),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: DropdownButton<String>(
+                                      dropdownColor: voiceBlue,
+                                      isDense: true,
+                                      isExpanded: false,
+                                      iconEnabledColor: Colors.white,
+                                      focusColor: Colors.white,
+                                      items: _class
+                                          .map((String dropDownStringItem) {
+                                        return DropdownMenuItem<String>(
+                                          value: dropDownStringItem,
+                                          child: Text(
+                                            dropDownStringItem,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'Poppins',
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                        );
+                                      }).toList(),
+                                      onChanged: (newValueSelected) {
+                                        setState(() {
+                                          _currentItemSelected3 =
+                                              newValueSelected!;
+                                          branch = newValueSelected;
+                                        });
+                                      },
+                                      value: _currentItemSelected3,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Container(),
                         SizedBox(
                           height: 20,
                         ),
@@ -567,8 +570,21 @@ class _SignUpState extends State<SignUpScreen> {
                               showProgress = true;
                               //split the string between '.' and '@' to get the branch
                             });
-                            signUp(emailController.text,
-                                passwordController.text, role);
+                            if (role == "Student") {
+                              int atIndex = emailController.text.indexOf("@");
+                              String domain =
+                                  emailController.text.substring(atIndex + 1);
+                              if (domain == 'saintgits.org') {
+                                signUp(emailController.text,
+                                    passwordController.text, role);
+                              } else {
+                                print("You are not a student from saintgits");
+                                Text('You are not a student from Saintgits');
+                              }
+                            } else {
+                              signUp(emailController.text,
+                                  passwordController.text, role);
+                            }
                           },
                           child: !_isLoading
                               ? Text(
