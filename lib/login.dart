@@ -144,7 +144,6 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       keyboardType: TextInputType.emailAddress,
                     ),
-                   
                     SizedBox(
                       height: 40,
                     ),
@@ -207,8 +206,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  
-
   void route() {
     User? user = FirebaseAuth.instance.currentUser;
     var kk = FirebaseFirestore.instance
@@ -233,7 +230,7 @@ class _LoginPageState extends State<LoginPage> {
         );
         }
       } else {
-        print('Document does not exist on the database');
+        print('This user is not registered with Voice');
       }
     });
   }
@@ -288,8 +285,3 @@ checkEmail(_emailCorrect) {
     return Text("");
   }
 }
-
-
-
-
-

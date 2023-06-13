@@ -27,23 +27,27 @@ class _openComplaintsState extends State<openComplaints> {
     // .then((docSnapshot) async {
     //   branch = docSnapshot.data()?['branch'];
     // });
-
-    var classRoom;
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser?.uid)
-        .get()
-        .then((docSnapshot) async {
-       classRoom= docSnapshot.data()?['branch'];
-    });
+    String email = FirebaseAuth.instance.currentUser!.email!;
+    var classRoom = email.split('.')[1].split('@')[0];
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.push(context,
                 MaterialPageRoute(builder: (context) => studentHomeScreen()))),
+            actions: [
+          IconButton(
+            //on pressed function to navigate to the draft page of general complaints
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>draftOpen()));
+            },
+            //icon for a pen to write a new complaint
+            icon: Icon(Icons.create_outlined),
+          ),
+        ],
+                
         //add an icon to right side of appbar
-        backgroundColor: facColor,
+        backgroundColor: voiceBlue,
         centerTitle: true,
         title: const Text(
           "OPEN",
