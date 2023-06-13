@@ -1,4 +1,4 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +13,27 @@ class studentProfile extends StatefulWidget {
 }
 
 class _studentProfileState extends State<studentProfile> {
+  //get advisor from users collection
+      String advisor = '';
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Add a listener to the FirebaseFirestore stream
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .snapshots()
+        .listen((docSnapshot) {
+      // Update the advisor's email
+      advisor = docSnapshot.data()!['advisor'].toString();
+
+      // Rebuild the widget
+      setState(() {});
+    });
+  }
+
   var email = FirebaseAuth.instance.currentUser!.email;
   @override
   Widget build(BuildContext context) {
@@ -35,47 +56,47 @@ class _studentProfileState extends State<studentProfile> {
       body: SingleChildScrollView(
         child: Container(
           color: voiceBlue,
-          child : Container(
+          child: Container(
             width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
-                  //make border radius circular only at the top
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)),
-                  gradient: LinearGradient(colors: [
-                    hexStringToColor("8a2be2"),
-                    hexStringToColor("00308F"),
-                    hexStringToColor("001C2E")
-                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                            image: AssetImage("assets/images/img_profile21.png"),
-                            fit: BoxFit.fill)),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "SAINTGITS MAIL ID : ",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+                //make border radius circular only at the top
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)),
+                gradient: LinearGradient(colors: [
+                  hexStringToColor("8a2be2"),
+                  hexStringToColor("00308F"),
+                  hexStringToColor("001C2E")
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/img_profile21.png"),
+                          fit: BoxFit.fill)),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "SAINTGITS MAIL ID : ",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: 50,
                     decoration: BoxDecoration(
@@ -93,28 +114,26 @@ class _studentProfileState extends State<studentProfile> {
                         SizedBox(
                           width: 20,
                         ),
-                        Text(
-                          "$email"),
-                ],
-          )
-        ),
-        SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    "ADVISOR MAIL ID :",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
+                        Text("$email"),
+                      ],
+                    )),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "ADVISOR MAIL ID :",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: 50,
                     decoration: BoxDecoration(
@@ -132,16 +151,13 @@ class _studentProfileState extends State<studentProfile> {
                         SizedBox(
                           width: 20,
                         ),
-                        Text(
-                          "$email"),
-                ],
-          )
-        ),
-                ],
-
-      ),
-    ),
+                        Text(advisor),
+                      ],
+                    )),
+              ],
+            ),
           ),
+        ),
       ),
     );
   }
