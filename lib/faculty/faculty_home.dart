@@ -24,8 +24,9 @@ class _facultyHomeScreenState extends State<facultyHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer : facNavBar(),
+      endDrawer : facNavBar(),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
       backgroundColor: facColor,
         centerTitle: true,
         title: const Text(

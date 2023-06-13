@@ -1,16 +1,19 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:voice/student/SideMenu/NavBar.dart';
 import 'package:voice/utils/color_utils.dart';
 
 class studentProfile extends StatefulWidget {
   const studentProfile({Key? key}) : super(key: key);
-
+  // get snap => null;
   @override
   _studentProfileState createState() => _studentProfileState();
 }
 
 class _studentProfileState extends State<studentProfile> {
+  var email = FirebaseAuth.instance.currentUser!.email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,8 +48,100 @@ class _studentProfileState extends State<studentProfile> {
                     hexStringToColor("00308F"),
                     hexStringToColor("001C2E")
                   ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: 150,
+                    height: 150,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/img_profile21.png"),
+                            fit: BoxFit.fill)),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "SAINTGITS MAIL ID : ",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(44, 255, 255, 255),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Icon(
+                          Icons.email,
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          "$email"),
+                ],
           )
         ),
+        SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "ADVISOR MAIL ID :",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(44, 255, 255, 255),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Icon(
+                          Icons.email,
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          "$email"),
+                ],
+          )
+        ),
+                ],
+
+      ),
+    ),
+          ),
       ),
     );
   }
