@@ -18,18 +18,24 @@ class facOpenComplaints extends StatefulWidget {
 }
 
 class _facOpenComplaintsState extends State<facOpenComplaints> {
-    var classRoom;
+
+  String branch = '';
 
   @override
   void initState() {
     super.initState();
 
+    // Add a listener to the FirebaseFirestore stream
     FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.uid)
-        .get()
-        .then((docSnapshot) async {
-      classRoom = docSnapshot.data()?['branch'];
+        .snapshots()
+        .listen((docSnapshot) {
+      // Update the advisor's email
+
+      branch = docSnapshot.data()!['branch'].toString();
+      // Rebuild the widget
+      setState(() {});
     });
   }
   @override
@@ -78,7 +84,7 @@ class _facOpenComplaintsState extends State<facOpenComplaints> {
                 //check branch of the current user and assign it to variable 'branch'
 
                 .collection('open_complaints')
-                .where('branch', isEqualTo: classRoom)
+                .where('branch', isEqualTo: branch)
                 .orderBy('upvotes', descending: true)
                 .snapshots(),
             builder: (context,
