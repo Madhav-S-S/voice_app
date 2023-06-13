@@ -2,7 +2,7 @@ import 'package:voice/faculty/facNavBar.dart';
 import 'package:voice/faculty/fac_open_complaints.dart';
 import 'package:voice/faculty/faculty_general.dart';
 import 'package:voice/faculty/personal/faculty_personal.dart';
-import 'package:voice/student/NavBar.dart';
+import 'package:voice/student/SideMenu/NavBar.dart';
 import 'package:voice/student/general_complaints.dart';
 import 'package:voice/student/open_complaints.dart';
 import 'package:voice/student/student_personal/personal_complaints.dart';

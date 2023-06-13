@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:voice/faculty/faculty_home.dart';
+import 'package:voice/student/SideMenu/student_profile.dart';
 import 'package:voice/student/student_home.dart';
 import 'package:voice/login.dart';
 import 'package:flutter/material.dart';
@@ -87,6 +88,7 @@ class _MyAppState extends State<MyApp> {
         '/login': (context) => LoginPage(),
         '/studenthome': (context) => studentHomeScreen(),
         '/facultyhome': (context) => facultyHomeScreen(),
+        '/studentProfile':(context) => studentProfile(),
       },
       // home: user!=null?studentHomeScreen():LoginPage(),
     );

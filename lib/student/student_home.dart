@@ -1,4 +1,4 @@
-import 'package:voice/student/NavBar.dart';
+import 'package:voice/student/SideMenu/NavBar.dart';
 import 'package:voice/student/general_complaints.dart';
 import 'package:voice/student/open_complaints.dart';
 import 'package:voice/student/student_personal/personal_complaints.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:voice/login.dart';
 import 'package:voice/reusable_widgets/reusable_widget.dart';
 
-import '../core/utils/image_constant.dart';
+import '../../core/utils/image_constant.dart';
 class NavBar extends StatelessWidget {
   
   const NavBar({Key? key}) : super(key: key);
@@ -43,7 +43,7 @@ class NavBar extends StatelessWidget {
           leading: Icon(Icons.account_circle),
           title: Text('Profile',style: TextStyle(color: Colors.white,fontSize: 15,fontFamily: 'Poppins')),
           onTap: () {
-            Navigator.pushNamed(context, '/studentprofile');
+            Navigator.pushNamed(context, '/studentProfile');
           },
         ),
         ListTile(
