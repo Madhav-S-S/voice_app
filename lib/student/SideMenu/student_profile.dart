@@ -29,22 +29,24 @@ class _studentProfileState extends State<studentProfile> {
               fontFamily: "Poppins"),
         ),
       ),
-      body: Container(
-        color: voiceBlue,
-        child : Container(
-          width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-                //make border radius circular only at the top
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30)),
-                gradient: LinearGradient(colors: [
-                  hexStringToColor("8a2be2"),
-                  hexStringToColor("00308F"),
-                  hexStringToColor("001C2E")
-                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-        )
+      body: SingleChildScrollView(
+        child: Container(
+          color: voiceBlue,
+          child : Container(
+            width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                  //make border radius circular only at the top
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30)),
+                  gradient: LinearGradient(colors: [
+                    hexStringToColor("8a2be2"),
+                    hexStringToColor("00308F"),
+                    hexStringToColor("001C2E")
+                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          )
+        ),
       ),
     );
   }

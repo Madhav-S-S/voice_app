@@ -20,8 +20,10 @@ class _StudentHomeScreenState extends State<studentHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavBar(),
+      endDrawer: NavBar(),
       appBar: AppBar(
+        //make the backbutton disappear
+        automaticallyImplyLeading: false,
         //create a dashboard app bar
         backgroundColor: Color.fromRGBO(0, 28, 46, 1),
         // leading: null,
