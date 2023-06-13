@@ -182,7 +182,7 @@ class _SignUpState extends State<SignUpScreen> {
   var rollNo = "1";
   var _currentItemSelected3 = "csb2024";
   var _isLoading = false;
-  var branch;
+  var branch = "csb2024";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -667,6 +667,7 @@ class _SignUpState extends State<SignUpScreen> {
         });
       } else {
         ref.doc(user!.uid).set({
+          'hod': advisorController.text,
           'email': emailController.text,
           'role': role,
           'uid': user.uid,

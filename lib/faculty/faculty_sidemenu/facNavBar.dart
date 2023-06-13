@@ -4,7 +4,7 @@ import 'package:voice/login.dart';
 import 'package:voice/reusable_widgets/reusable_widget.dart';
 import 'package:voice/utils/color_utils.dart';
 
-import '../core/utils/image_constant.dart';
+import '../../core/utils/image_constant.dart';
 class facNavBar extends StatelessWidget {
   
   const facNavBar({Key? key}) : super(key: key);
@@ -37,14 +37,14 @@ class facNavBar extends StatelessWidget {
           leading: Icon(Icons.home),
           title: Text('Home',style: TextStyle(color: Colors.white,fontSize: 15,fontFamily: 'Poppins'),),
           onTap: () {
-            Navigator.pushNamed(context, '/studenthome');
+            Navigator.pushNamed(context, '/facultyhome');
           },
         ),
         ListTile(
           leading: Icon(Icons.account_circle),
           title: Text('Profile',style: TextStyle(color: Colors.white,fontSize: 15,fontFamily: 'Poppins')),
           onTap: () {
-            Navigator.pushNamed(context, '/studentprofile');
+            Navigator.pushNamed(context, '/facultyProfile');
           },
         ),
         ListTile(

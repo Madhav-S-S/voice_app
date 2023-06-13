@@ -1,4 +1,4 @@
-import 'package:voice/faculty/facNavBar.dart';
+import 'package:voice/faculty/faculty_sidemenu/facNavBar.dart';
 import 'package:voice/faculty/fac_open_complaints.dart';
 import 'package:voice/faculty/faculty_general.dart';
 import 'package:voice/faculty/personal/faculty_personal.dart';

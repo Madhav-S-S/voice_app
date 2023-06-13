@@ -29,7 +29,7 @@ class _facOpenComplaintsState extends State<facOpenComplaints> {
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .get()
         .then((docSnapshot) async {
-      classRoom = docSnapshot.data()!['branch'].toString();
+      classRoom = docSnapshot.data()?['branch'];
     });
   }
   @override
