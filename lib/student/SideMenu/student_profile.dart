@@ -14,8 +14,9 @@ class studentProfile extends StatefulWidget {
 
 class _studentProfileState extends State<studentProfile> {
   //get advisor from users collection
-      String advisor = '';
-
+  String advisor = '';
+  String branch = '';
+  String rollNo = '';
   @override
   void initState() {
     super.initState();
@@ -28,7 +29,8 @@ class _studentProfileState extends State<studentProfile> {
         .listen((docSnapshot) {
       // Update the advisor's email
       advisor = docSnapshot.data()!['advisor'].toString();
-
+      branch = docSnapshot.data()!['branch'].toString();
+      rollNo = docSnapshot.data()!['rollNo'].toString();
       // Rebuild the widget
       setState(() {});
     });
@@ -38,7 +40,7 @@ class _studentProfileState extends State<studentProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavBar(),
+      endDrawer: NavBar(),
       appBar: AppBar(
         //create a dashboard app bar
         backgroundColor: Color.fromRGBO(0, 28, 46, 1),
@@ -89,12 +91,10 @@ class _studentProfileState extends State<studentProfile> {
                 Text(
                   "SAINTGITS MAIL ID : ",
                   style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      fontSize: 20, fontFamily: "Poppins", color: Colors.white),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Container(
                     width: MediaQuery.of(context).size.width * 0.8,
@@ -120,18 +120,13 @@ class _studentProfileState extends State<studentProfile> {
                 SizedBox(
                   height: 20,
                 ),
-                SizedBox(
-                  height: 20,
-                ),
                 Text(
                   "ADVISOR MAIL ID :",
                   style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      fontSize: 20, fontFamily: "Poppins", color: Colors.white),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Container(
                     width: MediaQuery.of(context).size.width * 0.8,
@@ -145,7 +140,7 @@ class _studentProfileState extends State<studentProfile> {
                           width: 20,
                         ),
                         Icon(
-                          Icons.email,
+                          Icons.email_outlined,
                           color: const Color.fromARGB(255, 255, 255, 255),
                         ),
                         SizedBox(
@@ -154,6 +149,22 @@ class _studentProfileState extends State<studentProfile> {
                         Text(advisor),
                       ],
                     )),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "CLASS : $branch",
+                  style: TextStyle(
+                      fontSize: 20, fontFamily: "Poppins", color: Colors.white),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Roll No : $rollNo",
+                  style: TextStyle(
+                      fontSize: 20, fontFamily: "Poppins", color: Colors.white),
+                ),
               ],
             ),
           ),
