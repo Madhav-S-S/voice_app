@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:voice/methods/firestore_methods.dart';
+import 'package:voice/methods/firebase_methods.dart';
 import 'package:voice/reusable_widgets/reusable_widget.dart';
 class facultyPersonalPost extends StatefulWidget {
     final snap;

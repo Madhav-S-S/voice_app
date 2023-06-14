@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:voice/email_verify.dart';
 import 'package:voice/login.dart';
 import 'package:voice/utils/color_utils.dart';
 //import 'login.dart';
@@ -14,7 +16,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpState extends State<SignUpScreen> {
   _SignUpState();
-
+  bool isEmailVerified = false;
   bool showProgress = false;
   bool visible = false;
   bool show = true;
@@ -575,15 +577,21 @@ class _SignUpState extends State<SignUpScreen> {
                               String domain =
                                   emailController.text.substring(atIndex + 1);
                               if (domain == 'saintgits.org') {
-                                signUp(emailController.text,
-                                    passwordController.text, role);
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return emailVerify();
+                                  });
                               } else {
                                 print("You are not a student from saintgits");
                                 Text('You are not a student from Saintgits');
                               }
                             } else {
-                              signUp(emailController.text,
-                                  passwordController.text, role);
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return emailVerify();
+                                  });
                             }
                           },
                           child: !_isLoading
@@ -636,6 +644,113 @@ class _SignUpState extends State<SignUpScreen> {
         ),
       ),
     );
+  }
+  emailVerify() {
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          decoration: BoxDecoration(
+            //make the border circular
+            //make background blur of the container
+            color: Colors.black54.withOpacity(0.3),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          height: 300,
+          width: 300,
+          child: SingleChildScrollView(
+            //show a message that email verification link has been sent to the email
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20,0,20,0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Email Verification",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Poppins',
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "A verification link has been sent to your email",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontFamily: 'Poppins',
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  MaterialButton(
+                    minWidth: MediaQuery.of(context).size.width - 100,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                    elevation: 5.0,
+                    height: 50,
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginPage()));
+                    },
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
+                    ),
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  MaterialButton(
+                    minWidth: MediaQuery.of(context).size.width - 100,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                    elevation: 5.0,
+                    height: 50,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
+                    ),
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  Future sendEmailVerification() async {
+    try {
+      await FirebaseAuth.instance.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      // TODO
+    }
   }
 
   void signUp(String email, String password, String role) async {

@@ -7,7 +7,8 @@ import 'package:uuid/uuid.dart';
 class FireStoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<String> UpvotePost(String postId, String uid, List upvotes,String type) async {
+  Future<String> UpvotePost(
+      String postId, String uid, List upvotes, String type) async {
     String res = "Some error occurred";
     try {
       if (upvotes.contains(uid)) {
@@ -27,7 +28,9 @@ class FireStoreMethods {
     }
     return res;
   }
-   Future<String> DownvotePost(String postId, String uid, List downvotes,String type) async {
+
+  Future<String> DownvotePost(
+      String postId, String uid, List downvotes, String type) async {
     String res = "Some error occurred";
     try {
       if (downvotes.contains(uid)) {
@@ -47,6 +50,7 @@ class FireStoreMethods {
     }
     return res;
   }
+
   Future<String> deletePost(String postId) async {
     String res = "Some error occurred";
     try {
@@ -69,4 +73,6 @@ class FireStoreMethods {
     }
     return res;
   }
+
+  
 }
