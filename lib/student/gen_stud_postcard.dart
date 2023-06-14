@@ -82,42 +82,49 @@ class _PostCardState extends State<PostCard> {
                     ),
                   ),
                 ),
+                if (widget.snap['userId'] == user!.uid)
                 IconButton(
                   onPressed: () {
-                    showDialog(
-                      useRootNavigator: false,
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          child: ListView(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              shrinkWrap: true,
-                              children: [
-                                if (widget.snap['userId'] == user!.uid)
-                                  'Delete',
-                              ]
-                                  .map(
-                                    (e) => InkWell(
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 12, horizontal: 16),
-                                          child: Text(e),
-                                        ),
-                                        onTap: () {
-                                          deletePost(
-                                            widget.snap['postId'].toString(),
-                                          );
-                                          // remove the dialog box
-                                          Navigator.of(context).pop();
-                                        }),
-                                  )
-                                  .toList()),
-                        );
-                      },
-                    );
+                    
                   },
-                  icon: const Icon(Icons.more_vert),
+                  icon: const Icon(Icons.delete),
                 ),
+                // IconButton(
+                //   onPressed: () {
+                //     showDialog(
+                //       useRootNavigator: false,
+                //       context: context,
+                //       builder: (context) {
+                //         return Dialog(
+                //           child: ListView(
+                //               padding: const EdgeInsets.symmetric(vertical: 16),
+                //               shrinkWrap: true,
+                //               children: [
+                //                 if (widget.snap['userId'] == user!.uid)
+                //                   'Delete',
+                //               ]
+                //                   .map(
+                //                     (e) => InkWell(
+                //                         child: Container(
+                //                           padding: const EdgeInsets.symmetric(
+                //                               vertical: 12, horizontal: 16),
+                //                           child: Text(e),
+                //                         ),
+                //                         onTap: () {
+                //                           deletePost(
+                //                             widget.snap['postId'].toString(),
+                //                           );
+                //                           // remove the dialog box
+                //                           Navigator.of(context).pop();
+                //                         }),
+                //                   )
+                //                   .toList()),
+                //         );
+                //       },
+                //     );
+                //   },
+                //   icon: const Icon(Icons.more_vert),
+                // ),
               ],
             ),
           ),
