@@ -50,7 +50,19 @@ class FireStoreMethods {
   Future<String> deletePost(String postId) async {
     String res = "Some error occurred";
     try {
-      await _firestore.collection('complaints').doc(postId).delete();
+      await _firestore.collection('gen_complaints').doc(postId).delete();
+      res = 'success';
+    } catch (err) {
+      res = err.toString();
+    }
+    try {
+      await _firestore.collection('open_complaints').doc(postId).delete();
+      res = 'success';
+    } catch (err) {
+      res = err.toString();
+    }
+    try {
+      await _firestore.collection('personal_complaints').doc(postId).delete();
       res = 'success';
     } catch (err) {
       res = err.toString();

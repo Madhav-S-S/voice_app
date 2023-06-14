@@ -85,7 +85,9 @@ class _PostCardState extends State<PostCard> {
                 if (widget.snap['userId'] == user!.uid)
                 IconButton(
                   onPressed: () {
-                    
+                    deletePost(
+                      widget.snap['postId'].toString(),
+                    );
                   },
                   icon: const Icon(Icons.delete),
                 ),
