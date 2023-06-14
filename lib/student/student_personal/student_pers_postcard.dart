@@ -83,47 +83,41 @@ class _studPersPostCardState extends State<studPersPostCard> {
                   ),
                 ),
 
-                  IconButton(
-                        onPressed: () {
-                          showDialog(
-                            useRootNavigator: false,
-                            context: context,
-                            builder: (context) {
-                              return Dialog(
-                                child: ListView(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16),
-                                    shrinkWrap: true,
-                                    children: [
-                                       if(widget.snap['userId'] == user!.uid)'Delete',
-                                    ]
-                                        .map(
-                                          (e) => InkWell(
-                                              child: Container(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 12,
-                                                        horizontal: 16),
-                                                child: Text(e),
-                                              ),
-
-                                              onTap: () {
-                                                deletePost(
-                                                  widget.snap['postId']
-                                                      .toString(),
-                                                );
-                                                // remove the dialog box
-                                                Navigator.of(context).pop();
-                                              }
-                                            ),
-                                        )
-                                        .toList()),
-                              );
-                            },
-                          );
-                        },
-                        icon: const Icon(Icons.more_vert),
-                      ),
+                  if (widget.snap['userId'] == user!.uid)
+                IconButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          shadowColor: Color.fromARGB(75, 0, 144, 255),
+                          backgroundColor: Color.fromARGB(225, 0, 0, 0),
+                          title: const Text('Delete Post'),
+                          content: const Text(
+                              'Are you sure you want to delete this post?'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                deletePost(
+                                  widget.snap['postId'].toString(),
+                                );
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('Delete'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  icon: const Icon(Icons.delete),
+                ),
               ],
             ),
           ),
