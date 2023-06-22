@@ -80,10 +80,6 @@ We express my sincere thanks to my guide **Dr. Arun Madhu** of the Computer Scie
 
 We are highly indebted to the Project Coordinators **Dr. Nisha Joseph** and **Er. Lina Ickappan** for their valuable guidance, constant monitoring and support. I extend my heartfelt thanks to all the faculty members of CSE, my parents, friends and well-wishers for their support and timely help.
 
-We also thank Almighty God for granting strength and wisdom in the completion of this mini
-
-project.
-
 iii
 
 **ABSTRACT**
