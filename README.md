@@ -1,4 +1,5 @@
-﻿A MINI PROJECT REPORT on
+Basic UI design is done with figma : https://www.figma.com/file/n8Q1ZwDtvGt05lcyDZgMan/VOICE?type=design&node-id=0%3A1&mode=design&t=lRcZzzdeDQwcoNta-1
+ A MINI PROJECT REPORT on
 
 **ANONYMOUS COMPLAINT MANAGEMENT PLATFORM**
 
